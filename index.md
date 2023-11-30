@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
+I intend to use this site to post long-form unedited blogs.
 
-Maybe say a some things about yourself.
+From those blogs, I'll take my favorite portion and post it on X.
 
-Or maybe what you plan to blog about.
+The blog aims to share my work so that my friends or people internet creeping can dive in.
