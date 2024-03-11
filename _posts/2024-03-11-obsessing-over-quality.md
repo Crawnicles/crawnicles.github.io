@@ -1,0 +1,21 @@
+The birds are back in early March. Spring feels closer than winter but I never felt winter this year.
+
+It's funny that I dream of the California climate and it's as if the warmest winter ever dissapointed me. I feel like I'm quite at home in Minnesota.
+
+I believe there's something special about being in twin cities that's a feeling I can't get elsewhere. There's no mountain, no ocean, just forest and grassland. 
+
+It's not wild like Montana nor a scene like Austin - the city life is good, it's a lot like playing when I was child but with bigger friends. Yes we've ought to work but it's just gotten better in time. I want to do good work. In fact, I'm obsessed with doing good work. 
+
+What is good work in a human life? I think about Ben making the highest quality cabinet doors. Precise angles - custom made for each cabinet. Hours of a combination of mental know how and physical work. I think about the show Yellowstone - breaking horses, molding cowboys - it's a romanicitizing of life on the ranch and I want my work in the world to be a combination of mental and physical when I see people do it well. I remember the days of just physical work, no intellect required, and I can't handle that. I think that's why I am so drawn to writing - it's all about the contents of the mind - it's a reflection of what you've read and taken in as food, as sustenance. 
+
+Producing things of real value is not about working harder than everyone - it's about obsessing over consistent quality. The word quality also reminds me of zen and the art of motorcycle maintenance. To ride a motorcycle with quality is to understand the motor, how the parts work together, and how to maintenance the bike. 
+
+I am aware that I don't have the technical knowledge on how to write - that I've come at it for so long just spewing out whatever appears next in the mind. There's not a lot of craft to it - I want to figure out how to get tangibly better because somoeone can play a game of chess a thousand times and only get marginally better without any training from a mentor - from someone who possesses the knowledge you seek. It's got me thinking about an MFA in writing. A Masters of Fine Arts - something I said I would never do. Another degreee that won't help me learn technical skills. 
+
+I see the Nividia/OpenAI campuses and am aware that I have the opportunity to work for some of the greatest companies of our time. All of the people in the Vipassana lineage are successful. I can be in that group of people but I have never been the perfectionist that works well in that type of culture. I just don't care about the advance of technology enough to try getting in with a top tech comnpany.
+
+I care about my wife, I find meaning through writing, and I feel my purpose is to be a give myself to family/friends and humanity through writing. 
+
+The quality of our relationship is at an all-time high and I forsee it getting greater in time. Through massage, working out together, and scheduled time for sex and logistics - it's a well rounded operation. We'll have a house soon and I'll take on the skills of the carpenter as I grow more into a man each year. Things a man oughta know - hook a trailer on hitch, shoot a shotgun, catch a fish, change a tire. I'm going out to shoot a shotgun next month hunting the turkey. That'll be good. Getting stronger to learn the bow. I don't need to learn to be a master fisherman but I do want to begin going out with my paps a bit more. 
+
+As Tamara is nearing her departure, I do feel for the family. A Pakistani family is not to happy about a girl leaving home with a boy who disrespects them. It's the fear that she will be gone for the long term. A parent feels bittersweet about their children leaving knowing that 95% of the time they spend together with their children has passed. That's the feeling I get about Tamara leaving to Oregon. Another best friend leaving - all the homies are in that category. It's tough to lose a homie but for Tracy losing time with your twin is harder - the one who's shared every moment. The weight of that lingers in our home. 
