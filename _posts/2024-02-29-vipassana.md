@@ -1,0 +1,1 @@
+Dhamma Mahavana is a place of power. Goenka recorded the videos that are seen around the world in English at that center. The facilities are top tier. The natural beauty is unique - the foothills of the Sierras, covered in Manzanitas and birds everywhere. Saw seven deer on the seventh day, smelt a skunk, heard the piercing screech of a hawk. 

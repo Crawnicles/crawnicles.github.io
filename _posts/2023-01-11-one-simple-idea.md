@@ -1,0 +1,11 @@
+Day after day I get a feeling like I've come across some incredible ideas. I have thought a lot about what I want to do in the world - building businesses interests me but I am not going to be the technical expert of the business. I did come up with an idea that would just take serious work to try implementing but is bound to be a good idea. The M courts may be the best aspect of my upbringing. I loved playing basketball on those courts. Matt has the same experience. All of my friends and many generations of ballers had this same experience. Therefore, I think the idea is good enough where it would spread by word of mouth that we are building basketball courts all around the US and beginning the National M Court League. I want to make it serious at the highest levels - but the majority of people who get to play are just like me and Vlad - B team basketball players that love the thrill of being able to dunk. It promotes good health, good competition and there's not another thing I can name where I was totally into it. I was immersed and would still be if I could get a good game of M courts going again. No thoughts come up in the midst of playing - that's a time when I felt the flow the most. M courts will be the pickleball to tennis. Available to a wider range of people and which has the potential to grow fast. So many parks have real sized hoops that we could add short hoops to. I don't think it needs much more justification - but do I need a business to facilitate it is the question. 
+
+We need to get a map and set a goal to add 10 M courts to the US a year. 
+
+One job would be to find the sites and contact the people necessary to develop on it.
+Another job would be to manage the site that facilitates all the league games.
+All the homies could be the founders of the org - I'm actually hyped on this idea.
+
+Two goals for 2024 - begin the first M Courts rec league in MN and deliver copies of Thaka.
+
+Begin Doing - until both goals are achieved and don't give a fuck about anything else. A job will come. 
