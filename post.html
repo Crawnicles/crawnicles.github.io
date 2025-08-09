@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post Viewer</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 2rem;
+      background-color: #fdfcf7;
+      color: #333;
+    }
+    a { color: #4b3b2b; }
+  </style>
+</head>
+<body>
+  <a href="index.html">&larr; Back to home</a>
+  <div id="content"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const src = params.get('src');
+    if (src) {
+      fetch(src)
+        .then(res => res.text())
+        .then(text => {
+          document.getElementById('content').innerHTML = marked.parse(text);
+        });
+    } else {
+      document.getElementById('content').innerHTML = "<p>No post specified.</p>";
+    }
+  </script>
+</body>
+</html>

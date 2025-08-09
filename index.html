@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andrew Crawford · AI/ML + Data Engineer · Minneapolis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Garamond', serif;
+      background: #f4f1ea url('https://i.imgur.com/fHn7b7V.jpg') no-repeat center fixed;
+      background-size: cover;
+      color: #2c2c2c;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      color: #4b3b2b;
+    }
+    section {
+      padding: 2rem;
+      background-color: rgba(255,255,255,0.85);
+      margin: 2rem auto;
+      border-radius: 8px;
+      max-width: 900px;
+    }
+    .gallery img {
+      max-width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Andrew Crawford</h1>
+    <p>AI/ML + Data Engineer · Minneapolis</p>
+    <p>
+      <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a> |
+      <a href="https://www.linkedin.com/in/crawnicles/" target="_blank">LinkedIn</a> |
+      <a href="http://github.com/crawnicles" target="_blank">GitHub</a>
+    </p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#writings">Writings</a>
+      <a href="#carvings">Woodcarvings</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm an AI/ML and Data Engineer passionate about building creative, impactful projects—bridging software, hardware, and storytelling. I love Studio Ghibli worlds, the epic feel of LOTR, and bringing a sense of adventure and artistry into my work.</p>
+  </section>
+
+  <section id="writings">
+    <h2>My Writings</h2>
+    <div id="writings-list"></div>
+  </section>
+
+  <section id="carvings">
+    <h2>My Woodcarvings</h2>
+    <div class="gallery" id="carvings-gallery"></div>
+  </section>
+
+  <script>
+    async function loadWritings() {
+      const res = await fetch('writings/index.json');
+      const writings = await res.json();
+      const container = document.getElementById('writings-list');
+      writings.forEach(w => {
+        const link = document.createElement('a');
+        link.href = 'post.html?src=writings/' + w.file;
+        link.textContent = w.title + " - " + w.description;
+        container.appendChild(link);
+        container.appendChild(document.createElement('br'));
+      });
+    }
+
+    async function loadCarvings() {
+      const res = await fetch('carvings/index.json');
+      const carvings = await res.json();
+      const gallery = document.getElementById('carvings-gallery');
+      carvings.forEach(c => {
+        const img = document.createElement('img');
+        img.src = 'carvings/' + c.src;
+        img.alt = c.title;
+        gallery.appendChild(img);
+      });
+    }
+
+    loadWritings();
+    loadCarvings();
+  </script>
+</body>
+</html>
