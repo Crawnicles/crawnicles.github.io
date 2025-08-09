@@ -43,7 +43,6 @@
       md = md.replace(/^(?!<h\d|<ul|<pre|<li|<\/ul|<blockquote)([^\n]+)\n/gm,'<p>$1</p>\n');
       return md;
     }
-
     const params = new URLSearchParams(location.search);
     const src = params.get('src');
     if(!src){ document.getElementById('post').innerHTML = '<p class="muted">No post specified.</p>'; }
