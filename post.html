@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Post Viewer</title>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post — Andrew Crawford</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Georgia', serif;
-      margin: 2rem;
-      background-color: #fdfcf7;
-      color: #333;
-    }
-    a { color: #4b3b2b; }
+    :root{--bg:#f7f3ea;--ink:#1f2937;--muted:#6b7280;--accent:#8a7b59;--card:#ffffffee;--ring:#d4c4a8}
+    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--ink)}
+    .wrap{max-width:900px;margin:0 auto;padding:2rem 1rem}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:1.25rem}
+    h1,h2,h3{font-family:"Crimson Pro",Georgia,serif}
+    pre{background:#111;color:#f3f3f3;padding:1rem;border-radius:10px;overflow:auto}
+    code{font-family:ui-monospace,Menlo,Consolas,monospace}
+    a{color:#2f6f40;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .muted{color:var(--muted)}
   </style>
 </head>
 <body>
-  <a href="index.html">&larr; Back to home</a>
-  <div id="content"></div>
+  <div class="wrap">
+    <a href="./" class="muted">← Back to home</a>
+    <div class="card" style="margin-top:1rem">
+      <article id="post"></article>
+    </div>
+  </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
+    function mdToHtml(md){
+      md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      md = md.replace(/^###\s+(.*)$/gm,'<h3>$1</h3>');
+      md = md.replace(/^##\s+(.*)$/gm,'<h2>$1</h2>');
+      md = md.replace(/^#\s+(.*)$/gm,'<h1>$1</h1>');
+      md = md.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+      md = md.replace(/\*(.*?)\*/g,'<em>$1</em>');
+      md = md.replace(/`([^`]+)`/g,'<code>$1</code>');
+      md = md.replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>');
+      md = md.replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+      md = md.replace(/^(?:- |\* )(.*)$/gm,'<li>$1</li>');
+      md = md.replace(/(<li>.*<\/li>\n?)+/g,m=>'<ul>'+m+'</ul>');
+      md = md.replace(/^(?!<h\d|<ul|<pre|<li|<\/ul|<blockquote)([^\n]+)\n/gm,'<p>$1</p>\n');
+      return md;
+    }
+
+    const params = new URLSearchParams(location.search);
     const src = params.get('src');
-    if (src) {
-      fetch(src)
-        .then(res => res.text())
-        .then(text => {
-          document.getElementById('content').innerHTML = marked.parse(text);
-        });
-    } else {
-      document.getElementById('content').innerHTML = "<p>No post specified.</p>";
+    if(!src){ document.getElementById('post').innerHTML = '<p class="muted">No post specified.</p>'; }
+    else{
+      fetch(src).then(r=>r.text()).then(t=>{
+        document.getElementById('post').innerHTML = mdToHtml(t);
+      }).catch(()=>{
+        document.getElementById('post').innerHTML = '<p class="muted">Could not load post.</p>';
+      });
     }
   </script>
 </body>

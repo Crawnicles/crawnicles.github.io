@@ -1,20 +1,20 @@
 [
   {
-    "title": "First Steps into AI",
-    "file": "first-steps.md",
-    "description": "My journey into AI/ML",
+    "title": "How I teach non\u2011coders to ship ML in a week",
+    "file": "teach-ml-in-a-week.md",
+    "description": "A calm, constrained recipe my bootcamp students used to demo confidently.",
     "tags": [
-      "AI",
-      "Career"
+      "Teaching",
+      "ML"
     ]
   },
   {
-    "title": "Wood, Code, and Creativity",
-    "file": "wood-code-creativity.md",
-    "description": "Blending woodworking with technology",
+    "title": "Dashboards that actually change behavior",
+    "file": "dashboards-that-drive-action.md",
+    "description": "Lessons from Adtech Motors: instrument decisions, not vanity charts.",
     "tags": [
-      "Woodcarving",
-      "Creativity"
+      "Data",
+      "UX"
     ]
   }
 ]
