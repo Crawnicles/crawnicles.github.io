@@ -295,7 +295,7 @@
     <div class="rule"></div>
 
     <section id="carpentry" class="reveal">
-      <h2>Carpentry Skills</h2>
+      <h2>Carpentry</h2>
       <p class="muted">Showcase techniques, joinery, and builds. Add entries in <span class="tag">/carpentry/index.json</span>.</p>
       <div id="carpentry-grid" class="grid g-3" style="margin-top:1rem"></div>
       <div id="carpentry-empty" class="muted" style="display:none">No carpentry items yet.</div>
@@ -415,7 +415,7 @@
       });
     }).catch(()=>document.getElementById('carving-empty').style.display='block');
 
-    // Carpentry Skills
+    // Carpentry 
     fetch('carpentry/index.json').then(r=>r.json()).then(items=>{
       const grid = document.getElementById('carpentry-grid'), empty = document.getElementById('carpentry-empty');
       if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
