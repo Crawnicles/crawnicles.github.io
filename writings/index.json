@@ -1,22 +1,19 @@
 [
   {
-    "title": "How I teach non\u2011coders to ship ML in a week",
-    "file": "teach-ml-in-a-week.md",
-    "description": "A calm, constrained recipe my bootcamp students used to demo confidently.",
+    "title": "Learning Notes \u2014 Vector DB tradeoffs",
+    "file": "vector-notes.md",
+    "description": "Lightweight notes comparing FAISS, pgvector, and Azure options.",
     "tags": [
-      "Teaching",
-      "ML"
+      "RAG",
+      "notes"
     ]
   },
   {
-    "title": "Dashboards that actually change behavior",
-    "file": "dashboards-that-drive-action.md",
-    "description": "Lessons from Adtech Motors: instrument decisions, not vanity charts.",
+    "title": "Habit loop for shipping small",
+    "file": "ship-small.md",
+    "description": "How I get to useful v1s without overthinking.",
     "tags": [
-      "Data",
-      "UX"
+      "process"
     ]
-  },
-    {"title":"Incremental Improvement","file":"ii.md","description":"One-liner","tags":["ML","Teaching"]}
-  
+  }
 ]

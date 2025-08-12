@@ -1,0 +1,53 @@
+[
+  {
+    "role": "Data Engineer",
+    "org": "Neurocraft",
+    "location": "Remote",
+    "dates": "2024\u20132025",
+    "bullets": [
+      "Built machinist data collection app on Azure Static Web Apps",
+      "Fabric/OneLake + Power BI dashboards for ops metrics",
+      "Automated PDF wear-and-tear reports with maintenance recs"
+    ],
+    "tech": [
+      "Azure",
+      "Fabric",
+      "OneLake",
+      "Power BI",
+      "Python"
+    ]
+  },
+  {
+    "role": "Risk Analytics Consultant II",
+    "org": "Wells Fargo",
+    "location": "Minneapolis, MN",
+    "dates": "2024",
+    "bullets": [
+      "Python scripts to validate legal doc language vs accounting data",
+      "Recurring SQL extracts and partner reporting",
+      "Power Automate forms for daily data capture"
+    ],
+    "tech": [
+      "Python",
+      "SQL",
+      "Power Automate"
+    ]
+  },
+  {
+    "role": "Senior Analytics Consultant",
+    "org": "Wells Fargo",
+    "location": "Minneapolis, MN",
+    "dates": "2023\u20132024",
+    "bullets": [
+      "GitHub-based dev cycle guide for analytics code",
+      "Common Python DB framework for Oracle/Teradata (SAS replacement)",
+      "Monthly Power BI dashboard for enterprise risk by location"
+    ],
+    "tech": [
+      "Python",
+      "Oracle",
+      "Teradata",
+      "Power BI"
+    ]
+  }
+]

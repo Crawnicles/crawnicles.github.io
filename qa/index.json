@@ -1,0 +1,14 @@
+[
+  {
+    "q": "How do you approach ambiguous problems?",
+    "a": "Shrink scope, ship a measurable slice, iterate with real feedback."
+  },
+  {
+    "q": "Favorite part of ML work?",
+    "a": "Turning messy context into a reliable loop: collect \u2192 clean \u2192 model \u2192 measure \u2192 adjust."
+  },
+  {
+    "q": "A project you\u2019re proud of?",
+    "a": "A writing assistant that ingests my journals and Goodreads to suggest edits and book recs I actually use."
+  }
+]

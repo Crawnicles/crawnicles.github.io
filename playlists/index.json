@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Focus Loop (SoundCloud)",
+    "type": "soundcloud",
+    "embed": "https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/nicholasbien/2after&color=%23222222&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
+  },
+  {
+    "title": "Deep Work (Spotify)",
+    "type": "spotify",
+    "embed": "https://open.spotify.com/embed/playlist/37i9dQZF1DX8Uebhn9wzrS"
+  }
+]

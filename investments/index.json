@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Predicting parts wear to cut downtime",
+    "thesis": "Light ML + structured telemetry to schedule maintenance before failure.",
+    "metrics": [
+      "AUC .84",
+      "\u2193 downtime 12%"
+    ],
+    "link": "#"
+  },
+  {
+    "title": "Menu mix & waste analytics",
+    "thesis": "Simple Cohort + contribution margin views to tune SKUs.",
+    "metrics": [
+      "\u2191 margin 4.2%"
+    ],
+    "link": "#"
+  },
+  {
+    "title": "Small-cap screening notes",
+    "thesis": "Quality + cash flow checklist; flags surfaced in a Power BI sheet.",
+    "metrics": [
+      "DIY research"
+    ],
+    "link": "#"
+  }
+]

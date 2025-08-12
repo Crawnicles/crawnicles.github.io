@@ -1,3 +1,0 @@
-The struggle with finding legitimate work continues on. People seek out the weaknesses of their fellow man and take advantage. I am still working on getting wise enough to avoid them all. You can't avoid them if they're in your family. There are so many people that should be avoided. "You take the high road, it's never crowded". If you're selling horse shit don't try to convince someone it's a cure for alzheimers. 
-
-It's a lazy mistake to marry for money and it's really stupid when you're already rich. After nearly two years of marriage, I couldn't be happier with who Tracy has been this whole time. I feel like I have further personal growth to benefit the collective. Obviously a new job.

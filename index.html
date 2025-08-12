@@ -1,64 +1,611 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Crawford | Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js" defer></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Andrew Crawford · Projects • Writing • Wood • Books</title>
+  <meta name="description" content="Andrew Crawford — AI/ML + Data Engineer in Minneapolis. Projects, writings, woodcarving, playlists, and a cozy library of book notes.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Crimson+Pro:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --shadow:0 18px 40px rgba(0,0,0,.35) }
+    /* THEMES */
+    .theme-kuro{
+      --bg:#0d0f12; --bg-soft:#101418; --ink:#eef2f6; --muted:#a8b3bd; --ring:#2a2f36; --card:#151a20e6;
+      --accent:#ffd166; --accent-2:#06d6a0; --accent-3:#7bd3ff; --accent-4:#ff7aa2; --chip:#1d232b; --seal:#e74b3c;
+    }
+    .theme-sakura{
+      --bg:#faf7f9; --bg-soft:#fff; --ink:#18141a; --muted:#6b6570; --ring:#e9dde4; --card:#fffffff2;
+      --accent:#ff9bb8; --accent-2:#ffd6e5; --accent-3:#caa6ff; --accent-4:#ffdd99; --chip:#f7eef3; --seal:#e36b7c;
+    }
+    .theme-aomi{
+      --bg:#0b1220; --bg-soft:#0f1828; --ink:#ecf3ff; --muted:#9db3d1; --ring:#1f2a3f; --card:#0f1726ee;
+      --accent:#7bd3ff; --accent-2:#4aa3ff; --accent-3:#7ce9d2; --accent-4:#8aa4ff; --chip:#0e1a30; --seal:#2e73ff;
+    }
+
+    html,body{height:100%}
+    body{margin:0; font-family:"Noto Sans JP", Inter, system-ui; color:var(--ink); background:var(--bg); line-height:1.65;}
+    h1,h2,h3{font-family:"Noto Serif JP","Crimson Pro",serif; margin:0 0 .5rem}
+    h1{font-size:clamp(2.4rem, 6vw, 4.4rem)} h2{font-size:clamp(1.6rem, 3vw, 2.2rem)} h3{font-size:clamp(1.15rem, 2.4vw, 1.35rem)}
+    p{margin:.25rem 0 .8rem} a{color:inherit; text-decoration:none}
+    .wrap{max-width:1140px; margin:0 auto; padding:0 1rem}
+    .grid{display:grid; gap:1rem}.g-2{grid-template-columns:repeat(2,minmax(0,1fr))}.g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    @media (max-width:980px){ .g-2,.g-3{grid-template-columns:1fr} }
+    /* theme-specific textures */
+    body.theme-kuro::before{content:""; position:fixed; inset:0; pointer-events:none; mix-blend-mode:soft-light; opacity:.28;
+      background:
+        radial-gradient(2px 2px at 12% 18%, rgba(255,215,130,.20), transparent 60%),
+        radial-gradient(1.5px 1.5px at 46% 32%, rgba(255,225,170,.15), transparent 55%),
+        radial-gradient(1.8px 1.8px at 78% 22%, rgba(255,215,130,.20), transparent 60%),
+        radial-gradient(1.4px 1.4px at 30% 68%, rgba(255,225,170,.16), transparent 60%);
+    }
+    body.theme-sakura::before{content:""; position:fixed; inset:0; pointer-events:none; opacity:.35; mix-blend-mode:soft-light;
+      background:
+        radial-gradient(700px 200px at 10% 0%, rgba(255,182,193,.18), transparent 60%),
+        radial-gradient(700px 200px at 90% -10%, rgba(255,222,233,.28), transparent 60%),
+        url('data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><g fill='%23ffd6e5' opacity='0.35'><circle cx='20' cy='20' r='2'/><circle cx='120' cy='140' r='1.6'/></g></svg>');
+      background-repeat:repeat;
+    }
+    body.theme-aomi::before{content:""; position:fixed; inset:0; pointer-events:none; opacity:.28;
+      background:
+        radial-gradient(900px 260px at 50% -120px, rgba(64,132,255,.25), transparent 60%),
+        radial-gradient(900px 260px at 20% -80px, rgba(0,180,216,.18), transparent 70%),
+        url('data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='140'><path d='M0 70 Q55 40 110 70 T220 70 V140 H0Z' fill='%230e1a30' opacity='0.45'/></svg>');
+      background-repeat:repeat-x, repeat-x, repeat;
+    }
+
+    /* Header */
+    header{position:sticky; top:0; z-index:30; border-bottom:1px solid var(--ring);
+      background:radial-gradient(1200px 240px at 50% -180px, #223040, transparent 60%), linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0));
+      backdrop-filter:saturate(160%) blur(10px)}
+    nav{display:flex; align-items:center; justify-content:space-between; padding:.7rem 0}
+    .brand{display:flex; gap:.8rem; align-items:center}
+    .sig{font-weight:800; letter-spacing:.2px}
+    .pill{display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .8rem; border:1px solid var(--ring); border-radius:999px; background:var(--chip); color:var(--ink); font-size:.92rem; box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+    .pill:hover{transform:translateY(-1px); transition:.2s ease}
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--ring)}
+    .hero .wrap{padding:4.6rem 1rem 2rem}
+    .scene{position:absolute; inset:0; pointer-events:none}
+    .scene::before{content:""; position:absolute; inset:0; background:
+        radial-gradient(900px 260px at 10% 0%, rgba(123,211,255,.18), transparent 60%),
+        radial-gradient(900px 260px at 90% -10%, rgba(6,214,160,.16), transparent 60%),
+        radial-gradient(1200px 260px at 50% -40%, rgba(255,209,102,.18), transparent 70%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); }
+    .cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.15rem}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.8rem 1.05rem; border-radius:14px; border:1px solid var(--ring); background:var(--ink); color:var(--bg); font-weight:800; box-shadow:var(--shadow)}
+    .btn.ghost{background:var(--card); color:var(--ink)} .btn.alt{background:linear-gradient(180deg, var(--accent-2), #2f946e); border-color:transparent}
+    .btn:hover{transform:translateY(-2px); transition:.18s ease}
+
+    /* Cards + chips */
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:1rem; box-shadow:var(--shadow)}
+    .card:hover{transform:translateY(-3px); transition:.2s ease}
+    .tag{display:inline-flex; align-items:center; padding:.2rem .6rem; font-size:.8rem; border-radius:999px; background:var(--chip); border:1px solid var(--ring); margin:.18rem .32rem .18rem 0}
+    .rule{height:1px; margin:2rem 0; background:linear-gradient(90deg, transparent, var(--ring), transparent)}
+    .project-links{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.6rem}
+    .btn.github{background:linear-gradient(180deg, var(--accent-3), #2a5fa3); border-color:transparent}
+    .btn.demo{background:var(--card); color:var(--ink)}
+
+    /* Experience timeline */
+    #experience .xp-card{background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:1rem; box-shadow:var(--shadow)}
+    #experience .xp-item{display:grid; grid-template-columns:1fr auto; gap:.2rem .6rem; padding:1rem; border:1px dashed var(--ring); border-radius:12px; background:rgba(255,255,255,.02)}
+    #experience .xp-item + .xp-item{margin-top:.8rem}
+    #experience .xp-role{font-weight:800}
+    #experience .xp-org{color:var(--muted)}
+    #experience .xp-bullets{margin:.4rem 0 0 1rem}
+    #experience .xp-bullets li{margin:.2rem 0}
+    #experience .xp-tech{margin-top:.4rem}
+    #experience .xp-tech .tag{margin-top:.25rem}
+
+    /* Gallery */
+    #carving-gallery figure{margin:0}
+    #carving-gallery img{width:100%; height:220px; object-fit:cover; border-radius:12px; border:1px solid var(--ring)}
+    #lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; padding:2rem}
+    #lightbox.open{display:flex} #lightbox-img{max-width:90vw; max-height:80vh; border-radius:12px; border:1px solid var(--ring); background:var(--card)}
+
+    /* Carpentry grid */
+    #carpentry-grid .tile{position:relative; overflow:hidden; border-radius:14px; border:1px solid var(--ring); background:var(--card); box-shadow:var(--shadow)}
+    #carpentry-grid img{width:100%; height:220px; object-fit:cover; display:block}
+    .tile-body{padding:.75rem 1rem}
+    .skill-chip{display:inline-flex; align-items:center; padding:.16rem .5rem; font-size:.78rem; border-radius:999px; background:var(--chip); border:1px solid var(--ring); margin:.16rem .25rem .16rem 0}
+    .tile .hover{position:absolute; inset:0; background:linear-gradient(180deg, transparent, rgba(0,0,0,.35)); opacity:0; transition:.25s ease}
+    .tile:hover .hover{opacity:1}
+
+    footer{border-top:1px solid var(--ring); padding:2rem 0; color:var(--muted)} .muted{color:var(--muted)}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform:translateY(10px); transition:.5s ease} .reveal.in{opacity:1; transform:translateY(0)}
+
+    /* Japanese elegance touches */
+    .sig::after{ content:""; display:inline-block; width:10px; height:10px; border-radius:2px; background:var(--seal); margin-left:8px; box-shadow:0 0 0 1px rgba(0,0,0,.15) inset; opacity:.9 }
+    h2{ position:relative; padding-bottom:.3rem } h2::after{ content:""; position:absolute; left:0; bottom:-4px; width:64px; height:2px; background:linear-gradient(90deg,var(--accent-2), transparent) }
+    .card{ border-radius:18px }
+    body::before{content:""; position:fixed; inset:0; pointer-events:none; mix-blend-mode:soft-light; opacity:.28; background:
+        radial-gradient(2px 2px at 12% 18%, rgba(255,215,130,.20), transparent 60%),
+        radial-gradient(1.5px 1.5px at 46% 32%, rgba(255,225,170,.15), transparent 55%),
+        radial-gradient(1.8px 1.8px at 78% 22%, rgba(255,215,130,.20), transparent 60%),
+        radial-gradient(1.4px 1.4px at 30% 68%, rgba(255,225,170,.16), transparent 60%); }
+    .rule{position:relative} .rule::after{content:""; position:absolute; left:0; right:0; top:-1px; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.08) 15%, rgba(255,255,255,.22) 50%, rgba(255,255,255,.08) 85%, transparent); filter:blur(.2px)}
+
+    /* NOW widget */
+    #now .now-grid{display:grid; gap:1rem; grid-template-columns:repeat(3, minmax(0,1fr))}
+    #now .now-card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:1rem; box-shadow:var(--shadow)}
+    #now .label{font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-3)}
+
+    /* Ask Andrew */
+    #ask details{border:1px solid var(--ring); background:var(--card); border-radius:12px; padding:.6rem .8rem}
+    #ask details+details{margin-top:.6rem}
+    #ask summary{cursor:pointer; font-weight:700}
+
+    /* Controls row */
+    .controls{display:flex; gap:.55rem; align-items:center}
+    /* Video embed */
+    .video-embed{position:relative; width:100%; padding-top:56.25%; border-radius:14px; overflow:hidden; border:1px solid var(--ring); background:var(--card); box-shadow:var(--shadow)}
+    .video-embed iframe{position:absolute; inset:0; width:100%; height:100%}
+  </style>
+  <script>
+  (function(){
+    const THEMES=['theme-kuro','theme-sakura','theme-aomi'];
+    function apply(name){
+      const bodyEl = document.body; if(!bodyEl) return;
+      THEMES.forEach(t=>bodyEl.classList.remove(t));
+      bodyEl.classList.add(name);
+      const btn=document.getElementById('theme-toggle');
+      if(btn){ btn.textContent = name==='theme-kuro'?'🖤':name==='theme-sakura'?'🌸':'🌊'; }
+    }
+    window.addEventListener('DOMContentLoaded',()=>{
+      apply('theme-kuro'); // default every visit
+      const toggle=document.getElementById('theme-toggle');
+      toggle?.addEventListener('click',()=>{
+        const bodyEl=document.body;
+        const cur=THEMES.find(t=>bodyEl.classList.contains(t))||THEMES[0];
+        const next=THEMES[(THEMES.indexOf(cur)+1)%THEMES.length];
+        apply(next);
+      });
+    });
+  })();
+  </script>
+  <script src="https://w.soundcloud.com/player/api.js" defer></script>
 </head>
-<body class="dark-mode">
-    <header>
-        <h1>Andrew Crawford</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#carpentry">Carpentry</a>
-            <a href="#books">Books</a>
-            <a href="#writings">Writings</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button id="theme-toggle">Toggle Theme</button>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I'm a data engineer, writer, and woodworker with a love for Japanese aesthetics, storytelling, and building things both in the digital and physical world.</p>
-    </section>
-
-    <section id="projects">
-        <h2>Projects</h2>
-        <ul>
-            <li><strong>AI Writing Assistant</strong> - <a href="GITHUB_LINK_1">View on GitHub</a></li>
-            <li><strong>Financial Partnership Tool</strong> - <a href="GITHUB_LINK_2">View on GitHub</a></li>
-            <li><strong>Restaurant Inventory Optimizer</strong> - <a href="GITHUB_LINK_3">View on GitHub</a></li>
-        </ul>
-    </section>
-
-    <section id="carpentry">
-        <h2>Carpentry Skills</h2>
-        <div class="gallery">
-            <img src="assets/images/carpentry/sample1.jpg" alt="Carpentry Project 1">
-            <img src="assets/images/carpentry/sample2.jpg" alt="Carpentry Project 2">
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <div class="brand">
+          <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="18" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M32 16c6 7 6 14 0 21c-6-7-6-14 0-21z" fill="var(--accent-2)" stroke="var(--accent)"/>
+          </svg>
+          <div>
+            <div class="sig">Andrew Crawford</div>
+            <div class="muted" style="font-size:.9rem">AI/ML · Data · Builder</div>
+          </div>
         </div>
+        <div class="controls">
+          <a class="pill" href="#projects">Projects</a>
+          <a class="pill" href="#experience">Experience</a>
+          <a class="pill" href="#writings">Writings</a>
+          <a class="pill" href="#woodcarving">Woodcarving</a>
+          <a class="pill" href="#carpentry">Carpentry Skills</a>
+          <a class="pill" href="#books">Books</a>
+          <a class="pill" href="#listen">Playlists</a>
+          <a class="pill" href="#video">Video</a>
+          <a class="pill" href="#contact">Contact</a>
+          <button class="pill" id="focus-toggle" aria-label="Toggle focus audio">♫</button>
+          <button class="pill" id="theme-toggle" aria-label="Toggle theme">○/●</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="scene"></div>
+    <div class="wrap">
+      <p class="muted" style="font-size:clamp(1.06rem,1.8vw,1.24rem)">Minneapolis-based builder with a background in analytics for financial institutions and manufacturing. I design clean data pipelines, practical dashboards, and ML-powered tools. Outdoors loving, robotics-curious, and a teacher at heart.</p>
+      <div class="cta">
+        <a class="btn alt" href="#contact">Work with me</a>
+        <a class="btn ghost" href="#projects">See projects</a>
+        <a class="btn ghost" href="./resume.pdf" download>Download résumé</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap" style="padding:1.4rem 1rem 4rem">
+    <section id="now" class="reveal">
+      <div class="now-grid">
+        <div class="now-card"><div class="label">Reading</div><div id="now-reading">Loading…</div></div>
+        <div class="now-card"><div class="label">Learning</div><div id="now-learning">Loading…</div></div>
+        <div class="now-card"><div class="label">Building</div><div id="now-building">Loading…</div></div>
+      </div>
     </section>
 
-    <section id="books">
-        <h2>Books & Reviews</h2>
-        <div id="book-list"></div>
+    <div class="rule"></div>
+
+    <section id="projects" class="reveal">
+      <h2>Selected Projects</h2>
+      <div class="grid g-3" style="margin-top:1rem">
+        <article class="card">
+          <h3>AI Writing Assistant</h3>
+          <p>Assistant that ingests journals + Goodreads to suggest edits and book recs. Agentic pipeline with retrieval and a clean web UI. Used daily.</p>
+          <div class="muted">Python · FastAPI · RAG/Embeddings · Postgres · Frontend</div>
+          <div class="project-links">
+            <!-- @TODO: replace # with your GitHub repo URL -->
+            <a class="btn github" href="#" target="_blank" rel="noopener">View on GitHub</a>
+            <!-- @TODO: optional live demo link -->
+            <a class="btn demo" href="#" target="_blank" rel="noopener">Live Demo</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Adtech Motors Dashboards</h3>
+          <p>Power BI dashboards for machinist data and tear-down reports. Azure AI Document Intelligence parses forms; PDF generation with photos, parts, and cost.</p>
+          <div class="muted">Power BI · Azure · Python · PDF gen</div>
+          <div class="project-links">
+            <!-- @TODO: replace # with your case study or repo URL -->
+            <a class="btn github" href="#" target="_blank" rel="noopener">View on GitHub / Case</a>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Financial Partnership Tool (MVP)</h3>
+          <p>Django app to aggregate investments and generate quarterly PDFs. Includes restaurant waste analytics.</p>
+          <div class="muted">Django · Celery · Postgres · Pandas</div>
+          <div class="project-links">
+            <!-- @TODO: replace # with your GitHub repo URL -->
+            <a class="btn github" href="#" target="_blank" rel="noopener">View on GitHub</a>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <section id="writings">
-        <h2>Writings</h2>
-        <div id="writing-list"></div>
+    <div class="rule"></div>
+
+    <section id="experience" class="reveal">
+      <h2>Experience</h2>
+      <p class="muted">Structured for quick scanning. Edit <span class="tag">/experience/index.json</span> to update roles, dates, bullets, and tech.</p>
+      <div id="xp-list" class="grid g-2" style="margin-top:1rem"></div>
+      <div id="xp-empty" class="muted" style="display:none">No experience found.</div>
     </section>
 
-    <section id="contact">
+    <div class="rule"></div>
+
+    <section id="investments" class="reveal">
+      <h2>Investments & Analyses</h2>
+      <p class="muted">Public write-ups and dashboards. Add entries in <span class="tag">/investments/index.json</span>.</p>
+      <div id="invest-grid" class="grid g-3" style="margin-top:1rem"></div>
+      <div id="invest-empty" class="muted" style="display:none">No analyses yet.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="writings" class="reveal">
+      <h2>Writings</h2>
+      <p class="muted">Drop Markdown files into <span class="tag">/writings</span> and list them in <span class="tag">/writings/index.json</span>. They’ll render in a reader view.</p>
+      <div id="writing-list" class="grid g-3" style="margin-top:1rem"></div>
+      <div id="writing-empty" class="muted" style="display:none">No writings found (check filenames & JSON).</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="woodcarving" class="reveal">
+      <h2>Woodcarving</h2>
+      <p class="muted">Place photos in <span class="tag">/carvings</span> and map them in <span class="tag">/carvings/index.json</span>. Click for a lightbox.</p>
+      <div id="carving-gallery" class="grid g-3" style="margin-top:1rem"></div>
+      <div id="carving-empty" class="muted" style="display:none">No images found (check filenames & JSON).</div>
+      <div id="lightbox" aria-hidden="true"><img id="lightbox-img" alt="Woodcarving full view"/></div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="carpentry" class="reveal">
+      <h2>Carpentry Skills</h2>
+      <p class="muted">Showcase techniques, joinery, and builds. Add entries in <span class="tag">/carpentry/index.json</span>.</p>
+      <div id="carpentry-grid" class="grid g-3" style="margin-top:1rem"></div>
+      <div id="carpentry-empty" class="muted" style="display:none">No carpentry items yet.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="books" class="reveal">
+      <h2>Library — Books & Notes</h2>
+      <p class="muted">Update <span class="tag">/books/index.json</span> with title, author, rating (0–5), notes, and optional <code>quote</code>.</p>
+      <div id="book-shelf" class="grid g-3" style="margin-top:1rem"></div>
+      <div id="book-empty" class="muted" style="display:none">No books yet.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="ask" class="reveal">
+      <h2>Ask Andrew</h2>
+      <div id="qa-list"></div>
+      <div id="qa-empty" class="muted" style="display:none">No Q&A yet.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="listen" class="reveal">
+      <h2>Playlists & Sounds</h2>
+      <p class="muted">Add Spotify or SoundCloud embeds in <span class="tag">/playlists/index.json</span>. Use the header ♫ to toggle a quiet loop for focus.</p>
+      <div id="listen-grid" class="grid g-2" style="margin-top:1rem"></div>
+      <div id="listen-empty" class="muted" style="display:none">No playlists yet.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="video" class="reveal">
+      <h2>Featured Video</h2>
+      <p class="muted">Set <span class="tag">/video/index.json</span> → { "youtubeId": "XXXXXXXXXXX", "title": "…", "description": "…" }</p>
+      <div id="video-wrap" class="video-embed"></div>
+      <div id="video-meta" class="muted" style="margin-top:.6rem"></div>
+      <div id="video-empty" class="muted" style="display:none">No video configured yet.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="contact" class="grid g-2 reveal" style="align-items:start">
+      <div class="card">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/crawnicles/">linkedin.com/in/crawnicles</a></p>
-        <p>GitHub: <a href="https://github.com/crawnicles">github.com/crawnicles</a></p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a></li>
+          <li><strong>Location:</strong> Minneapolis, MN (CST)</li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/crawnicles/">linkedin.com/in/crawnicles/</a></li>
+          <li><strong>GitHub:</strong> <a href="http://github.com/crawnicles">github.com/crawnicles</a></li>
+        </ul>
+        <p>
+          <a id="schedule-mail" class="btn" href="#">Schedule by Email</a>
+          <a id="gcal-link" class="btn ghost" target="_blank" rel="noopener" href="#">Add to Google Calendar</a>
+          </p>
+        <p class="muted">Tip: The email + Google Calendar buttons are **free** and work anywhere. If you ever want automated booking later, we can add a free option like Google Appointment Schedules.</p>
+      </div>
+      <div class="card">
+        <h2>Now</h2>
+        <p>Exploring ML + data roles where I can own pipelines and ship features. Building tools that reduce toil and help teams decide faster.</p>
+        <p class="muted">Click the crest at the top for a small easter egg.</p>
+      </div>
     </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="muted">© <span id="y"></span> Andrew Crawford</p>
+    </div>
+  </footer>
+
+  <!-- Hidden SoundCloud widget for focus audio -->
+  <iframe id="sc-widget" style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/nicholasbien/2after&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
+  <script>
+    // Year & easter egg
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.querySelector('svg')?.addEventListener('click', ()=>{ alert('“All we have to decide is what to do with the time that is given us.”'); });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }); }, {threshold:.1});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // NOW widget (falls back if JSON missing)
+    (function(){
+      const set = (d)=>{ document.getElementById('now-reading').textContent=d.reading; document.getElementById('now-learning').textContent=d.learning; document.getElementById('now-building').textContent=d.building; };
+      fetch('now/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(d=>{ if(d && (d.reading||d.learning||d.building)){ set({reading:d.reading||'—', learning:d.learning||'—', building:d.building||'—'}); } else { throw new Error(); } })
+      .catch(()=> set({ reading:'Designing Data-Intensive Applications', learning:'Azure Fabric + vector DB tradeoffs', building:'A tiny RAG assistant for my notes' }));
+    })();
+
+    // Writings
+    fetch('writings/index.json').then(r=>r.json()).then(items=>{
+      const wrap = document.getElementById('writing-list'), empty = document.getElementById('writing-empty');
+      if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
+      items.forEach(w=>{
+        const el = document.createElement('article'); el.className='card';
+        el.innerHTML = `<h3><a href="post.html?src=writings/${w.file}" target="_blank" rel="noopener">${w.title}</a></h3>
+                        <p class="muted">${w.description||''}</p>
+                        <div>${(w.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
+        wrap.appendChild(el);
+      });
+    }).catch(()=>document.getElementById('writing-empty').style.display='block');
+
+    // Carvings + lightbox
+    const gallery = document.getElementById('carving-gallery');
+    const lb = document.getElementById('lightbox'); const lbImg = document.getElementById('lightbox-img');
+    function openLightbox(src){ if(!lb||!lbImg) return; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); lbImg.src=src; }
+    lb?.addEventListener('click',()=>{ if(!lb||!lbImg) return; lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; });
+    fetch('carvings/index.json').then(r=>r.json()).then(items=>{
+      const emptyGal = document.getElementById('carving-empty');
+      if(!Array.isArray(items) || !items.length){ emptyGal.style.display='block'; return; }
+      items.forEach(item=>{
+        const fig = document.createElement('figure'); fig.className='card'; fig.style.cursor='zoom-in';
+        fig.innerHTML = `<img loading="lazy" alt="${item.title}" src="carvings/${item.src}"/><figcaption style="margin-top:.5rem;font-weight:600">${item.title}</figcaption>`;
+        fig.addEventListener('click',()=>openLightbox(`carvings/${item.src}`));
+        gallery.appendChild(fig);
+      });
+    }).catch(()=>document.getElementById('carving-empty').style.display='block');
+
+    // Carpentry Skills
+    fetch('carpentry/index.json').then(r=>r.json()).then(items=>{
+      const grid = document.getElementById('carpentry-grid'), empty = document.getElementById('carpentry-empty');
+      if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
+      items.forEach(c=>{
+        const card = document.createElement('article'); card.className='tile';
+        card.innerHTML = `
+          <div class="hover"></div>
+          <img loading="lazy" alt="${c.title}" src="carpentry/${c.src}">
+          <div class="tile-body">
+            <h3>${c.title}</h3>
+            <p class="muted">${c.description||''}</p>
+            <div>${(c.skills||[]).map(s=>`<span class='skill-chip'>${s}</span>`).join('')}</div>
+            ${c.link ? `<p style=\"margin-top:.5rem\"><a class='tag' href='${c.link}' target='_blank' rel='noopener'>More</a></p>` : ''}
+          </div>`;
+        card.addEventListener('click',()=>openLightbox(`carpentry/${c.src}`));
+        grid.appendChild(card);
+      });
+    }).catch(()=>document.getElementById('carpentry-empty').style.display='block');
+
+    // Books (with optional quote drawer)
+    fetch('books/index.json').then(r=>r.json()).then(items=>{
+      const shelf = document.getElementById('book-shelf'), empty = document.getElementById('book-empty');
+      if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
+      items.forEach(b=>{
+        const el = document.createElement('div'); el.className='book';
+        const quote = b.quote ? `<blockquote style="margin:.5rem 0 0; padding-left:.8rem; border-left:2px solid var(--ring); color:var(--muted)">“${b.quote}”</blockquote>` : '';
+        el.innerHTML = `
+          <div class="spine" style="--cover:${b.cover_color||'linear-gradient(135deg,#cbb88a,#9a855a)'}">
+            <span class="spine-title">${b.title}</span>
+            <span class="spine-author">${b.author||''}</span>
+            <span class="spine-seal" aria-hidden="true"></span>
+          </div>
+          <div class="book-note">
+            <div class="stars" aria-label="Rating">${'★★★★★'.split('').map((s,i)=>`<span style="color:${i < (b.rating||0) ? '#f5b301':'#3b4250'}">★</span>`).join('')}</div>
+            <p>${b.note||''}</p>
+            ${quote}
+          </div>`;
+        el.querySelector('.spine').addEventListener('click',()=>{ el.classList.toggle('open'); });
+        shelf.appendChild(el);
+      });
+    }).catch(()=>document.getElementById('book-empty').style.display='block');
+
+    // Ask Andrew (Q&A)
+    (function(){
+      const mount=document.getElementById('qa-list'); const empty=document.getElementById('qa-empty');
+      function render(items){ items.forEach(q=>{ const d=document.createElement('details'); d.innerHTML=`<summary>${q.q}</summary><p class="muted">${q.a}</p>`; mount.appendChild(d); }); }
+      fetch('qa/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{ if(Array.isArray(items) && items.length){ render(items); } else { throw new Error(); } })
+      .catch(()=>{ render([
+        {q:'How do you approach ambiguous problems?', a:'Start by shrinking scope, pick a measurable slice, ship a draft, and iterate with real feedback.'},
+        {q:'Favorite part of ML work?', a:'Turning messy, real-world context into a reliable loop: collect → clean → model → measure → adjust.'},
+        {q:'A project you’re proud of?', a:'A writing assistant that ingests my journals and Goodreads to suggest edits and book recs I actually use.'}
+      ]); empty.style.display='none'; });
+    })();
+
+    // Experience (JSON-driven)
+    (function(){
+      const list=document.getElementById('xp-list'); const empty=document.getElementById('xp-empty');
+      function renderRole(x){
+        const card=document.createElement('div'); card.className='xp-card';
+        const tech=(x.tech||[]).map(t=>`<span class='tag'>${t}</span>`).join('');
+        const bullets=(x.bullets||[]).map(b=>`<li>${b}</li>`).join('');
+        card.innerHTML = `
+          <div class="xp-item">
+            <div>
+              <div class="xp-role">${x.role}</div>
+              <div class="xp-org">${x.org}${x.location?` — ${x.location}`:''}</div>
+            </div>
+            <div class="muted">${x.dates||''}</div>
+          </div>
+          ${bullets?`<ul class="xp-bullets">${bullets}</ul>`:''}
+          ${tech?`<div class="xp-tech">${tech}</div>`:''}
+        `;
+        list.appendChild(card);
+      }
+      fetch('experience/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{
+        if(Array.isArray(items) && items.length){ items.forEach(renderRole); } else { throw new Error(); }
+      }).catch(()=>{
+        const sample=[
+          {role:'Data Engineer', org:'Neurocraft', location:'Remote', dates:'2024–2025', bullets:['Built machinist data collection app on Azure Static Web Apps','Fabric/OneLake + Power BI dashboards for ops metrics','Automated PDF wear-and-tear reports with maintenance recs'], tech:['Azure','Fabric','OneLake','Power BI','Python']},
+          {role:'Risk Analytics Consultant II', org:'Wells Fargo', location:'Minneapolis, MN', dates:'2024', bullets:['Python scripts to validate legal doc language vs accounting data','Recurring SQL extracts and partner reporting','Power Automate forms for daily data capture'], tech:['Python','SQL','Power Automate']},
+          {role:'Senior Analytics Consultant', org:'Wells Fargo', location:'Minneapolis, MN', dates:'2023–2024', bullets:['GitHub-based dev cycle guide for analytics code','Common Python DB framework for Oracle/Teradata (SAS replacement)','Monthly Power BI dashboard for enterprise risk by location'], tech:['Python','Oracle','Teradata','Power BI']}
+        ];
+        sample.forEach(renderRole); empty.style.display='none';
+      });
+    })();
+
+    // Investments & Analyses
+    (function(){
+      const grid=document.getElementById('invest-grid'); const empty=document.getElementById('invest-empty');
+      function render(x){
+        const el=document.createElement('article'); el.className='card';
+        const chips=(x.metrics||[]).map(m=>`<span class='tag'>${m}</span>`).join('');
+        el.innerHTML = `
+          <h3>${x.title}</h3>
+          <p class="muted">${x.thesis||''}</p>
+          ${chips?`<div>${chips}</div>`:''}
+          ${x.link?`<p style="margin-top:.5rem"><a class='tag' href='${x.link}' target='_blank' rel='noopener'>Read more</a></p>`:''}
+        `;
+        grid.appendChild(el);
+      }
+      fetch('investments/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{
+        if(Array.isArray(items) && items.length){ items.forEach(render); } else { throw new Error(); }
+      }).catch(()=>{
+        const sample=[
+          {title:'Predicting parts wear to cut downtime', thesis:'Light ML + structured telemetry to schedule maintenance before failure.', metrics:['AUC .84','↓ downtime 12%'], link:'#'},
+          {title:'Menu mix & waste analytics', thesis:'Simple Cohort + contribution margin views to tune SKUs.', metrics:['↑ margin 4.2%'], link:'#'},
+          {title:'Small-cap screening notes', thesis:'Quality + cash flow checklist; flags surfaced in a Power BI sheet.', metrics:['DIY research'], link:'#'}
+        ];
+        sample.forEach(render); empty.style.display='none';
+      });
+    })();
+
+    // Playlists & Sounds
+    fetch('playlists/index.json').then(r=>r.json()).then(items=>{
+      const grid = document.getElementById('listen-grid'), empty = document.getElementById('listen-empty');
+      if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
+      items.forEach(p=>{
+        const card = document.createElement('div'); card.className='card';
+        card.innerHTML = `<h3>${p.title}</h3><p class="muted">${p.description||''}</p>`;
+        if(p.type==='spotify' && p.embed){
+          const iframe = document.createElement('iframe');
+          iframe.style.borderRadius='12px'; iframe.width='100%'; iframe.height='352'; iframe.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+          iframe.loading='lazy'; iframe.src=p.embed; card.appendChild(iframe);
+        } else if(p.type==='soundcloud' && p.embed){
+          const iframe = document.createElement('iframe'); iframe.width='100%'; iframe.height='166'; iframe.scrolling='no'; iframe.frameBorder='no'; iframe.allow='autoplay'; iframe.src=p.embed; card.appendChild(iframe);
+        } else if(p.url){
+          const a=document.createElement('a'); a.href=p.url; a.target='_blank'; a.rel='noopener'; a.textContent='Open'; card.appendChild(a);
+        }
+        grid.appendChild(card);
+      });
+    }).catch(()=>document.getElementById('listen-empty').style.display='block');
+
+    // Focus audio via SoundCloud widget
+    (function(){
+      const btn=document.getElementById('focus-toggle'); const iframe=document.getElementById('sc-widget');
+      let widget=null, ready=false, playing=false, queued=false;
+      function label(){ return ready ? (playing ? '♫ on' : '♫ off') : '♫ …'; }
+      function update(){ if(btn){ btn.textContent = label(); btn.setAttribute('aria-pressed', playing ? 'true' : 'false'); btn.title = ready ? 'Toggle focus audio' : 'Loading…'; } }
+      // Initialize once SoundCloud API is ready
+      window.addEventListener('load',()=>{
+        try{
+          widget = window.SC && SC.Widget(iframe);
+          if(!widget){ update(); return; }
+          widget.bind(SC.Widget.Events.READY, ()=>{ ready=true; widget.setVolume(20); if(queued){ widget.play(); queued=false; } update(); });
+          widget.bind(SC.Widget.Events.PLAY, ()=>{ playing=true; update(); });
+          widget.bind(SC.Widget.Events.PAUSE, ()=>{ playing=false; update(); });
+          update();
+        }catch(e){ /* keep quiet */ }
+      });
+      // User click
+      btn?.addEventListener('click',()=>{
+        if(!widget){ update(); return; }
+        if(!ready){ queued=true; update(); return; }
+        playing ? widget.pause() : widget.play();
+      });
+      update();
+    })();
+
+    // Schedule mail & Google Calendar link (prefilled)
+    (function(){
+      const mail=document.getElementById('schedule-mail'); const gcal=document.getElementById('gcal-link');
+      function nextSlots(){
+        const base=new Date(); const slots=[10,14,16.5]; const out=[];
+        for(let d=1; d<=3; d++){ const day=new Date(base.getFullYear(), base.getMonth(), base.getDate()+d);
+          slots.forEach(h=>{ const dt=new Date(day); const hours=Math.floor(h), mins=(h-hours)*60; dt.setHours(hours, mins, 0, 0); out.push(dt); }); }
+        return out.slice(0,3);
+      }
+      function fmtHuman(dt){ return dt.toLocaleString(undefined,{weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}); }
+      function toGCalTimes(start, mins){ const end=new Date(start.getTime()+mins*60000); const iso=(d)=> d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z'; return [iso(start), iso(end)]; }
+      const slots=nextSlots();
+      const list=slots.map(s=>`• ${fmtHuman(s)} (30 min)`).join('%0A');
+      const subject=encodeURIComponent('Call with Andrew Crawford — pick a time');
+      const body=encodeURIComponent(`Hi Andrew,%0A%0AI'd like to book a 30-minute call. Here are a few times that could work for me:%0A%0A${list}%0A%0AMy timezone is _____. If none of these work, feel free to propose alternatives.%0A%0AThanks!`);
+      mail && (mail.href=`mailto:crawnicles@gmail.com?subject=${subject}&body=${body}`);
+      const [s,e]=toGCalTimes(slots[0],30);
+      const text=encodeURIComponent('Call with Andrew Crawford'); const details=encodeURIComponent('Intro call booked via crawnicles.github.io');
+      gcal && (gcal.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${s}%2F${e}&details=${details}&ctz=America/Chicago&add=crawnicles@gmail.com`);
+    })();
+  </script>
+  <script>
+    // Featured Video (YouTube) loader
+    (function(){
+      const mount=document.getElementById('video-wrap'); const meta=document.getElementById('video-meta'); const empty=document.getElementById('video-empty');
+      function ytIdFromUrl(u){ try{ const url=new URL(u); if(url.hostname.includes('youtu.be')) return url.pathname.slice(1); const id=url.searchParams.get('v'); return id; }catch(e){ return null; } }
+      function render(id,title,desc){ if(!id||!mount){ empty && (empty.style.display='block'); return; } const iframe=document.createElement('iframe'); iframe.src=`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`; iframe.title=title||'YouTube video'; iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; iframe.allowFullscreen=true; mount.appendChild(iframe); if(meta){ meta.innerHTML = `${title?`<strong>${title}</strong>`:''} ${desc?`<div>${desc}</div>`:''}`; } }
+      fetch('video/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(v=>{ const id = v.youtubeId || ytIdFromUrl(v.url); render(id, v.title, v.description); })
+      .catch(()=>{ render('ysz5S6PUM-U','Sample demo video','Replace by creating /video/index.json with your own YouTube ID.'); });
+    })();
+  </script>
 </body>
 </html>

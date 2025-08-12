@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Dovetail Practice Board",
+    "src": "dovetail.png",
+    "description": "Hand-cut tails with marking gauge + dozuki.",
+    "skills": [
+      "Dovetails",
+      "Layout",
+      "Dozuki"
+    ]
+  },
+  {
+    "title": "Coffee Table",
+    "src": "table.png",
+    "description": "Ash top with wedged tenons.",
+    "skills": [
+      "Joinery",
+      "Finishing"
+    ]
+  }
+]

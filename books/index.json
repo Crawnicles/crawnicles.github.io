@@ -1,0 +1,17 @@
+[
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "rating": 5,
+    "note": "A comfort reread; maps and songs always get me.",
+    "quote": "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world.",
+    "cover_color": "linear-gradient(135deg,#2b5136,#96c185)"
+  },
+  {
+    "title": "The Wind-Up Bird Chronicle",
+    "author": "Haruki Murakami",
+    "rating": 4,
+    "note": "Surreal + quiet persistence.",
+    "cover_color": "linear-gradient(135deg,#2b2d42,#8d99ae)"
+  }
+]

@@ -1,58 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Post — Andrew Crawford</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Post • Andrew Crawford</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#f7f3ea;--ink:#1f2937;--muted:#6b7280;--accent:#8a7b59;--card:#ffffffee;--ring:#d4c4a8}
-    body{margin:0;font-family:Inter,system-ui;background:var(--bg);color:var(--ink)}
-    .wrap{max-width:900px;margin:0 auto;padding:2rem 1rem}
-    .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:1.25rem}
-    h1,h2,h3{font-family:"Crimson Pro",Georgia,serif}
-    pre{background:#111;color:#f3f3f3;padding:1rem;border-radius:10px;overflow:auto}
-    code{font-family:ui-monospace,Menlo,Consolas,monospace}
-    a{color:#2f6f40;text-decoration:none}
-    a:hover{text-decoration:underline}
-    .muted{color:var(--muted)}
+    :root{ --bg:#0d0f12; --ink:#eef2f6; --muted:#a8b3bd; --ring:#2a2f36; --card:#151a20e6 }
+    body{margin:0; background:var(--bg); color:var(--ink); font-family:Inter, system-ui; line-height:1.65}
+    .wrap{max-width:820px; margin:0 auto; padding:2rem 1rem}
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:1.2rem}
+    a{color:inherit}
+    #title{font-family:"Noto Serif JP", serif; font-size:clamp(1.6rem,3.4vw,2.2rem); margin:.2rem 0 1rem}
+    #meta{color:var(--muted); margin-bottom:1rem}
+    #content h2,#content h3{font-family:"Noto Serif JP", serif}
+    #content img{max-width:100%; border-radius:10px; border:1px solid var(--ring)}
+    .back{display:inline-flex; gap:.5rem; align-items:center; margin-bottom:1rem; text-decoration:none;}
+    .back span{border:1px solid var(--ring); border-radius:999px; padding:.2rem .6rem; background:#111a;}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <a href="./" class="muted">← Back to home</a>
-    <div class="card" style="margin-top:1rem">
-      <article id="post"></article>
+    <a class="back" href="./"><span>⟵</span> Back to site</a>
+    <div class="card">
+      <div id="title">Loading…</div>
+      <div id="meta"></div>
+      <div id="content">Please hold…</div>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    function mdToHtml(md){
-      md = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      md = md.replace(/^###\s+(.*)$/gm,'<h3>$1</h3>');
-      md = md.replace(/^##\s+(.*)$/gm,'<h2>$1</h2>');
-      md = md.replace(/^#\s+(.*)$/gm,'<h1>$1</h1>');
-      md = md.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-      md = md.replace(/\*(.*?)\*/g,'<em>$1</em>');
-      md = md.replace(/`([^`]+)`/g,'<code>$1</code>');
-      md = md.replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>');
-      md = md.replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-      md = md.replace(/^(?:- |\* )(.*)$/gm,'<li>$1</li>');
-      md = md.replace(/(<li>.*<\/li>\n?)+/g,m=>'<ul>'+m+'</ul>');
-      md = md.replace(/^(?!<h\d|<ul|<pre|<li|<\/ul|<blockquote)([^\n]+)\n/gm,'<p>$1</p>\n');
-      return md;
-    }
     const params = new URLSearchParams(location.search);
-    const src = params.get('src');
-    if(!src){ document.getElementById('post').innerHTML = '<p class="muted">No post specified.</p>'; }
-    else{
-      fetch(src).then(r=>r.text()).then(t=>{
-        document.getElementById('post').innerHTML = mdToHtml(t);
-      }).catch(()=>{
-        document.getElementById('post').innerHTML = '<p class="muted">Could not load post.</p>';
-      });
+    const src = params.get('src'); // e.g. writings/hello-world.md
+    const t   = params.get('title') || '';
+    if (t) document.getElementById('title').textContent = t;
+
+    function fmtDate(d){ return new Date(d).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}); }
+
+    async function load() {
+      if (!src) { document.getElementById('content').textContent = 'Missing post source (src=…)'; return; }
+      try {
+        const res = await fetch(src);
+        const text = await res.text();
+        const m = text.match(/<!--\s*date:\s*([^>]+)\s*-->/i);
+        if (m) document.getElementById('meta').textContent = fmtDate(m[1]);
+        const md = text.replace(/<!--[^]*?-->/g,''); // strip comments/frontmatter
+        document.getElementById('content').innerHTML = marked.parse(md);
+        if (!t) {
+          const firstH1 = document.querySelector('#content h1');
+          if (firstH1) document.getElementById('title').textContent = firstH1.textContent;
+        }
+      } catch (e) {
+        document.getElementById('content').textContent = 'Could not load post: ' + e.message;
+      }
     }
+    load();
   </script>
 </body>
 </html>
