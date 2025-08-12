@@ -1,244 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Andrew Crawford · AI/ML + Data Engineer · Minneapolis</title>
-  <meta name="description" content="Andrew Crawford — AI/ML + Data Engineer in Minneapolis. Python-first. Power BI, Azure, dashboards. Outdoors-loving maker." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Crimson+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#f7f3ea;--ink:#1f2937;--muted:#6b7280;--accent:#8a7b59;--leaf:#6f8f72;--sky:#d8ecff;--card:#ffffffee;--ring:#d4c4a8}
-    .dark{--bg:#0e0f0c;--ink:#f3f4f6;--muted:#9ca3af;--accent:#d1b97a;--leaf:#a6c1a9;--sky:#233142;--card:#121414ee;--ring:#2c2a25}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui;color:var(--ink);background:var(--bg);line-height:1.6}
-    h1,h2,h3{font-family:"Crimson Pro",Georgia,serif;line-height:1.15;margin:0 0 .5rem}
-    h1{font-size:clamp(2.2rem,6vw,4rem)}h2{font-size:clamp(1.5rem,3vw,2rem)}h3{font-size:clamp(1.2rem,2.5vw,1.5rem)}
-    p{margin:.25rem 0 .75rem}
-    .wrap{max-width:1080px;margin:0 auto;padding:0 1rem}
-    .grid{display:grid;gap:1rem}.g-2{grid-template-columns:repeat(2, minmax(0,1fr))}.g-3{grid-template-columns:repeat(3, minmax(0,1fr))}
-    @media (max-width:900px){.g-2,.g-3{grid-template-columns:1fr}}
-    header{position:sticky;top:0;z-index:20;backdrop-filter:saturate(180%) blur(6px);background:linear-gradient(to bottom, var(--bg), color-mix(in oklab, var(--bg) 80%, transparent));border-bottom:1px solid var(--ring)}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0}
-    nav .brand{display:flex;align-items:center;gap:.75rem}
-    .sig{font-family:"Crimson Pro",serif;font-weight:700;letter-spacing:.3px}
-    .pill{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .6rem;border:1px solid var(--ring);border-radius:999px;background:var(--card);font-size:.88rem}
-    a{text-decoration:none;color:inherit}
-    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--ring)}
-    .hero .wrap{padding:5rem 1rem}
-    .hero p.lead{font-size:clamp(1.05rem,1.8vw,1.25rem);color:var(--muted)}
-    .cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1rem}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.7rem 1rem;border-radius:12px;border:1px solid var(--ring);background:var(--ink);color:var(--bg);font-weight:600}
-    .btn.ghost{background:var(--card);color:var(--ink)}
-    /* Hand-drawn Ghibli/LOTR-ish background without external images */
-    .scene{position:absolute;inset:0;pointer-events:none}
-    .clouds{position:absolute;inset:0;background:
-      radial-gradient(70% 40% at 30% 30%, var(--sky), transparent 60%),
-      radial-gradient(60% 40% at 80% 20%, color-mix(in oklab, var(--sky) 80%, white), transparent 70%);opacity:0.7}
-    .vines{position:absolute;left:0;right:0;bottom:0;height:140px;background:
-      linear-gradient(to top, color-mix(in oklab, var(--leaf) 40%, transparent), transparent)}
-    .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:1rem}
-    .card:hover{transform:translateY(-2px);transition:.2s ease;box-shadow:0 12px 24px color-mix(in oklab, black 6%, transparent)}
-    .tag{display:inline-flex;align-items:center;padding:.15rem .5rem;font-size:.78rem;border-radius:999px;background:color-mix(in oklab, var(--leaf) 22%, transparent);border:1px solid var(--ring);margin:.15rem .25rem .15rem 0}
-    footer{border-top:1px solid var(--ring);padding:2rem 0;color:var(--muted)}
-    .rule{height:1px;margin:2rem 0;background:linear-gradient(90deg, transparent, var(--ring), transparent)}
-    .muted{color:var(--muted)}.caps{letter-spacing:.12em;text-transform:uppercase;font-weight:700;font-size:.76rem;color:var(--accent)}
-    .mono{font-family: ui-monospace, Menlo, Consolas, monospace}
-    /* Gallery */
-    #carving-gallery figure{margin:0}
-    #carving-gallery img{width:100%;height:220px;object-fit:cover;border-radius:8px;border:1px solid var(--ring)}
-    #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:2rem}
-    #lightbox.open{display:flex}
-    #lightbox-img{max-width:90vw;max-height:80vh;border-radius:12px;border:1px solid var(--ring);background:var(--card)}
-  </style>
-  <script>
-    const themeKey='theme-v1';
-    const setTheme=(t)=>{document.documentElement.classList.toggle('dark',t==='dark');localStorage.setItem(themeKey,t)};
-    const prefer=localStorage.getItem(themeKey)||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-    document.documentElement.classList.toggle('dark',prefer==='dark');
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Crawford | Portfolio</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" defer></script>
 </head>
-<body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand">
-          <svg width="36" height="36" viewBox="0 0 64 64" aria-hidden="true" role="img">
-            <circle cx="32" cy="32" r="18" fill="none" stroke="var(--accent)" stroke-width="2"/>
-            <path d="M32 16c6 7 6 14 0 21c-6-7-6-14 0-21z" fill="var(--leaf)" stroke="var(--accent)"/>
-          </svg>
-          <div>
-            <div class="sig">Andrew Crawford</div>
-            <div class="muted" style="font-size:.9rem">AI/ML · Data · Builder</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:.5rem">
-          <a class="pill" href="#projects">Projects</a>
-          <a class="pill" href="#experience">Experience</a>
-          <a class="pill" href="#writings">Writings</a>
-          <a class="pill" href="#woodcarving">Woodcarving</a>
-          <a class="pill" href="#contact">Contact</a>
-          <button class="pill" aria-label="Toggle theme" onclick="setTheme(document.documentElement.classList.contains('dark')?'light':'dark')">🌓</button>
-        </div>
-      </nav>
-    </div>
-  </header>
+<body class="dark-mode">
+    <header>
+        <h1>Andrew Crawford</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#carpentry">Carpentry</a>
+            <a href="#books">Books</a>
+            <a href="#writings">Writings</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button id="theme-toggle">Toggle Theme</button>
+    </header>
 
-  <section class="hero">
-    <div class="scene"><div class="clouds"></div><div class="vines"></div></div>
-    <div class="wrap">
-      <h1>Python-first AI/ML engineer who ships useful things</h1>
-      <p class="lead">Minneapolis-based builder with a background in analytics for financial institutions and manufacturing. I design clean data pipelines, practical dashboards, and ML-powered tools. Outdoors loving, robotics-curious, and a teacher at heart.</p>
-      <div class="cta">
-        <a class="btn" href="#contact">Invite me to your final round →</a>
-        <a class="btn ghost" href="#projects">See real projects</a>
-        <a class="btn ghost" href="./resume.pdf" download>Download résumé</a>
-      </div>
-      <div style="margin-top:1rem" class="muted mono">Open to: AI/ML Engineer · Data Engineer · Analytics Engineer · Research Engineer</div>
-    </div>
-  </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I'm a data engineer, writer, and woodworker with a love for Japanese aesthetics, storytelling, and building things both in the digital and physical world.</p>
+    </section>
 
-  <main class="wrap" style="padding:2rem 1rem 4rem">
     <section id="projects">
-      <h2>Selected Projects</h2>
-      <div class="grid g-3" style="margin-top:1rem">
-        <article class="card">
-          <h3>AI Writing Assistant</h3>
-          <p>Assistant that ingests journals + Goodreads to suggest edits and book recs. Agentic pipeline with retrieval and a clean web UI.</p>
-          <div class="muted">Python · FastAPI · RAG/Embeddings · Postgres · Frontend</div>
-        </article>
-        <article class="card">
-          <h3>Adtech Motors Dashboards</h3>
-          <p>Power BI dashboards for machinist data and tear‑down reports. Azure AI Document Intelligence parses forms; PDF generation with photos, parts, and cost.</p>
-          <div class="muted">Power BI · Azure · Python · PDF gen</div>
-        </article>
-        <article class="card">
-          <h3>Financial Partnership Tool (MVP)</h3>
-          <p>Django app to aggregate investments and generate quarterly PDFs. Includes restaurant waste analytics.</p>
-          <div class="muted">Django · Celery · Postgres · Pandas</div>
-        </article>
-      </div>
+        <h2>Projects</h2>
+        <ul>
+            <li><strong>AI Writing Assistant</strong> - <a href="GITHUB_LINK_1">View on GitHub</a></li>
+            <li><strong>Financial Partnership Tool</strong> - <a href="GITHUB_LINK_2">View on GitHub</a></li>
+            <li><strong>Restaurant Inventory Optimizer</strong> - <a href="GITHUB_LINK_3">View on GitHub</a></li>
+        </ul>
     </section>
 
-    <div class="rule"></div>
-
-    <section id="experience" class="grid g-2">
-      <div class="card">
-        <h2>Experience</h2>
-        <div class="timeline">
-          <div class="dot"><strong>Founder, Neurocraft</strong> — AI tools & dashboards. <span class="muted">2024–Present</span></div>
-          <div class="dot"><strong>Senior Analytics Consultant, Wells Fargo (Financial Crimes)</strong> — batch jobs, data pipelines</div>
-          <div class="dot"><strong>Data & Dashboards, Adtech Motors</strong> — Power BI, Azure Document Intelligence</div>
-          <div class="dot"><strong>TA, Columbia AI Coding Bootcamp</strong> — Python, ML, project coaching</div>
+    <section id="carpentry">
+        <h2>Carpentry Skills</h2>
+        <div class="gallery">
+            <img src="assets/images/carpentry/sample1.jpg" alt="Carpentry Project 1">
+            <img src="assets/images/carpentry/sample2.jpg" alt="Carpentry Project 2">
         </div>
-      </div>
-      <div class="card">
-        <h2>Skills</h2>
-        <div style="margin:.5rem 0 1rem">
-          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">scikit‑learn</span><span class="tag">Pandas</span><span class="tag">SQL</span><span class="tag">Power BI / Fabric</span><span class="tag">Azure</span><span class="tag">RAG / LLMs</span><span class="tag">Streamlit / Gradio</span><span class="tag">Git</span><span class="tag">Raspberry Pi</span>
-        </div>
-        <p class="muted">Calm focus, crisp PRs, lightweight docs, and frequent demos. Small teams, clear ownership, and the outdoors on weekends.</p>
-      </div>
     </section>
 
-    <div class="rule"></div>
+    <section id="books">
+        <h2>Books & Reviews</h2>
+        <div id="book-list"></div>
+    </section>
 
     <section id="writings">
-      <h2>Writings</h2>
-      <p class="muted">Add Markdown posts in <span class="mono">/writings</span> and list them in <span class="mono">/writings/index.json</span>. They’ll appear below automatically.</p>
-      <div id="writing-list" class="grid g-3" style="margin-top:1rem"></div>
-      <div id="writing-empty" class="muted" style="display:none">No writings found. Check <span class="mono">/writings/index.json</span> and filenames.</div>
+        <h2>Writings</h2>
+        <div id="writing-list"></div>
     </section>
 
-    <div class="rule"></div>
-
-    <section id="woodcarving">
-      <h2>Woodcarving</h2>
-      <p class="muted">Put images in <span class="mono">/carvings</span> and list them in <span class="mono">/carvings/index.json</span> (title + filename). The gallery + lightbox will pick them up.</p>
-      <div class="grid g-3" id="carving-gallery" style="margin-top:1rem"></div>
-      <div id="carving-empty" class="muted" style="display:none">No images found. Check <span class="mono">/carvings/index.json</span> and filenames.</div>
-      <div id="lightbox" aria-hidden="true"><img id="lightbox-img" alt="Woodcarving full view" /></div>
-    </section>
-
-    <div class="rule"></div>
-
-    <section id="contact" class="grid g-2" style="align-items:start">
-      <div class="card contact-card">
+    <section id="contact">
         <h2>Contact</h2>
-        <ul>
-          <li><strong>Email:</strong> <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a></li>
-          <li><strong>Location:</strong> Minneapolis, MN (CST)</li>
-          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/crawnicles/">https://www.linkedin.com/in/crawnicles/</a></li>
-          <li><strong>GitHub:</strong> <a href="http://github.com/crawnicles">http://github.com/crawnicles</a></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Résumé Snapshot</h2>
-        <ul>
-          <li>⚙️ Production dashboards & document pipelines (Power BI + Azure AI Doc Intelligence)</li>
-          <li>🧠 LLM apps with retrieval and pragmatic UX</li>
-          <li>📈 Data engineering for batch jobs in financial crimes</li>
-          <li>🎓 TA for AI bootcamp; coached teams to demo in a week</li>
-          <li>🪵 Off‑screen: hike, snorkel, woodworking, early robotics</li>
-        </ul>
-      </div>
+        <p>Email: <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/crawnicles/">linkedin.com/in/crawnicles</a></p>
+        <p>GitHub: <a href="https://github.com/crawnicles">github.com/crawnicles</a></p>
     </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div class="grid g-3">
-        <div><div class="caps">Currently</div><p>Exploring ML + data roles where I can own pipelines and ship features, not just decks.</p></div>
-        <div><div class="caps">Elsewhere</div><p><a href="http://github.com/crawnicles">GitHub</a> · <a href="https://www.linkedin.com/in/crawnicles/">LinkedIn</a></p></div>
-        <div><div class="caps">Easter egg</div><p class="muted">Click the ring in the crest 😉</p></div>
-      </div>
-      <p class="muted" style="margin-top:1rem">© <span id="y"></span> Andrew Crawford · Built with HTML/CSS/JS · Ghibli × LOTR vibes</p>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    // easter egg
-    document.querySelector('svg')?.addEventListener('click', ()=>{
-      alert('“All we have to decide is what to do with the time that is given us.” — Gandalf');
-    });
-
-    // --- Writings loader ---
-    fetch('writings/index.json')
-      .then(r=>r.json())
-      .then(items=>{
-        const wrap = document.getElementById('writing-list');
-        const empty = document.getElementById('writing-empty');
-        if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
-        items.forEach(w=>{
-          const el = document.createElement('article'); el.className='card';
-          el.innerHTML = `<h3><a href="post.html?src=writings/${w.file}" target="_blank" rel="noopener">${w.title}</a></h3>
-                          <p class="muted">${w.description||''}</p>
-                          <div>${(w.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
-          wrap.appendChild(el);
-        });
-      })
-      .catch(()=>{ document.getElementById('writing-empty').style.display='block'; });
-
-    // --- Carvings gallery loader ---
-    const gallery = document.getElementById('carving-gallery');
-    const emptyGal = document.getElementById('carving-empty');
-    const lb = document.getElementById('lightbox'); const lbImg = document.getElementById('lightbox-img');
-    function openLightbox(src){ lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); lbImg.src=src; }
-    lb?.addEventListener('click',()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; });
-
-    fetch('carvings/index.json')
-      .then(r=>r.json())
-      .then(items=>{
-        if(!Array.isArray(items) || !items.length){ emptyGal.style.display='block'; return; }
-        items.forEach(item=>{
-          const fig = document.createElement('figure'); fig.className='card'; fig.style.cursor='zoom-in';
-          fig.innerHTML = `<img loading="lazy" alt="${item.title}" src="carvings/${item.src}"/><figcaption style="margin-top:.5rem;font-weight:600">${item.title}</figcaption>`;
-          fig.addEventListener('click',()=>openLightbox(`carvings/${item.src}`));
-          gallery.appendChild(fig);
-        });
-      })
-      .catch(()=>{ emptyGal.style.display='block'; });
-  </script>
 </body>
 </html>
