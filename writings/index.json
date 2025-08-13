@@ -1,19 +1,140 @@
 [
   {
-    "title": "Learning Notes \u2014 Vector DB tradeoffs",
-    "file": "vector-notes.md",
-    "description": "Lightweight notes comparing FAISS, pgvector, and Azure options.",
-    "tags": [
-      "RAG",
-      "notes"
-    ]
+    "title": "One Simple Idea",
+    "file": "2023-01-11-one-simple-idea.md",
+    "description": "",
+    "tags": []
   },
   {
-    "title": "Habit loop for shipping small",
-    "file": "ship-small.md",
-    "description": "How I get to useful v1s without overthinking.",
-    "tags": [
-      "process"
-    ]
+    "title": "Opening",
+    "file": "2023-11-29-opening.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "The Intellectual Ladder",
+    "file": "2023-11-30-the-intellectual-ladder.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Leveraging Advantages",
+    "file": "2023-12-1-leveraging-advantages.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Human Misjudgment",
+    "file": "2023-12-2-human-misjudgment.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Inner Excavation",
+    "file": "2023-12-3-inner-excavation.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "My Flywheel",
+    "file": "2023-12-3-my-flywheel.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Idea Meritocracy",
+    "file": "2023-12-4-idea-meritocracy.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Personal Improvement",
+    "file": "2023-12-5-personal-improvement.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Shambala-Type Community",
+    "file": "2023-12-6-shambala-type-community.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Cookbook for a Sacred Life",
+    "file": "2023-12-7-cookbook-for-a-sacred-life.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Writing Guide One",
+    "file": "2023-12-28-writing-guide-one.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Choosing Work",
+    "file": "2023-12-29-choosing-work.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Intelligence Swagger",
+    "file": "2023-12-30-intelligence-swagger.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Writing Process",
+    "file": "2024-01-01-writing-process.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Tasty Lifestyles",
+    "file": "2024-01-18-tasty-lifestyles.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Vipassana",
+    "file": "2024-02-29-vipassana.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Obsessing Over Quality",
+    "file": "2024-03-11-obsessing-over-quality.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "The Fun Friend",
+    "file": "2024-03-12-the-fun-friend.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Craft",
+    "file": "2024-03-13-craft.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Professional Knowledge Worker",
+    "file": "2024-03-14-professional-knowledge-worker.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Clear Water",
+    "file": "2024-03-18-clear-water.md",
+    "description": "",
+    "tags": []
+  },
+  {
+    "title": "Straight by 28",
+    "file": "2024-03-22-straight-by-28.md",
+    "description": "",
+    "tags": []
   }
 ]
