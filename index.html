@@ -31,6 +31,7 @@
     .wrap{max-width:1140px; margin:0 auto; padding:0 1rem}
     .grid{display:grid; gap:1rem}.g-2{grid-template-columns:repeat(2,minmax(0,1fr))}.g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     @media (max-width:980px){ .g-2,.g-3{grid-template-columns:1fr} }
+
     /* theme-specific textures */
     body.theme-kuro::before{content:""; position:fixed; inset:0; pointer-events:none; mix-blend-mode:soft-light; opacity:.28;
       background:
@@ -87,16 +88,16 @@
     .btn.github{background:linear-gradient(180deg, var(--accent-3), #2a5fa3); border-color:transparent}
     .btn.demo{background:var(--card); color:var(--ink)}
 
-    /* Experience timeline */
-    #experience .xp-card{background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:1rem; box-shadow:var(--shadow)}
-    #experience .xp-item{display:grid; grid-template-columns:1fr auto; gap:.2rem .6rem; padding:1rem; border:1px dashed var(--ring); border-radius:12px; background:rgba(255,255,255,.02)}
-    #experience .xp-item + .xp-item{margin-top:.8rem}
-    #experience .xp-role{font-weight:800}
-    #experience .xp-org{color:var(--muted)}
-    #experience .xp-bullets{margin:.4rem 0 0 1rem}
-    #experience .xp-bullets li{margin:.2rem 0}
-    #experience .xp-tech{margin-top:.4rem}
-    #experience .xp-tech .tag{margin-top:.25rem}
+    /* Experience + Volunteer */
+    #experience .xp-card, #volunteer .vol-card{background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:1rem; box-shadow:var(--shadow)}
+    #experience .xp-item, #volunteer .vol-item{display:grid; grid-template-columns:1fr auto; gap:.2rem .6rem; padding:1rem; border:1px dashed var(--ring); border-radius:12px; background:rgba(255,255,255,.02)}
+    #experience .xp-item + .xp-item, #volunteer .vol-item + .vol-item{margin-top:.8rem}
+    #experience .xp-role, #volunteer .vol-role{font-weight:800}
+    #experience .xp-org,  #volunteer .vol-org {color:var(--muted)}
+    #experience .xp-bullets, #volunteer .vol-bullets{margin:.4rem 0 0 1rem}
+    #experience .xp-bullets li, #volunteer .vol-bullets li{margin:.2rem 0}
+    #experience .xp-tech, #volunteer .vol-tech{margin-top:.4rem}
+    #experience .xp-tech .tag, #volunteer .vol-tech .tag{margin-top:.25rem}
 
     /* Gallery */
     #carving-gallery figure{margin:0}
@@ -140,10 +141,13 @@
 
     /* Controls row */
     .controls{display:flex; gap:.55rem; align-items:center}
+
     /* Video embed */
     .video-embed{position:relative; width:100%; padding-top:56.25%; border-radius:14px; overflow:hidden; border:1px solid var(--ring); background:var(--card); box-shadow:var(--shadow)}
     .video-embed iframe{position:absolute; inset:0; width:100%; height:100%}
   </style>
+
+  <!-- Theme init (default dark / kuro, rotate on toggle) -->
   <script>
   (function(){
     const THEMES=['theme-kuro','theme-sakura','theme-aomi'];
@@ -185,7 +189,6 @@
         <div class="controls">
           <a class="pill" href="#projects">Projects</a>
           <a class="pill" href="#experience">Experience</a>
-          <a class="pill" href="#volunteer">Volunteer</a>
           <a class="pill" href="#writings">Writings</a>
           <a class="pill" href="#woodcarving">Woodcarving</a>
           <a class="pill" href="#carpentry">Carpentry</a>
@@ -265,10 +268,10 @@
 
     <div class="rule"></div>
 
-    <!-- Volunteer section -->
+    <!-- VOLUNTEER -->
     <section id="volunteer" class="reveal">
       <h2>Volunteer</h2>
-      <p class="muted">Edit <span class="tag">/volunteer/index.json</span> to update volunteer roles.</p>
+      <p class="muted">Add entries in <span class="tag">/volunteer/index.json</span>. Same shape as experience: role, org, location, dates, bullets, tech (optional).</p>
       <div id="vol-list" class="grid g-2" style="margin-top:1rem"></div>
       <div id="vol-empty" class="muted" style="display:none">No volunteer entries yet.</div>
     </section>
@@ -379,6 +382,7 @@
 
   <!-- Hidden SoundCloud widget for focus audio -->
   <iframe id="sc-widget" style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/nicholasbien/2after&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
+
   <script>
     // Year & easter egg
     document.getElementById('y').textContent = new Date().getFullYear();
@@ -400,9 +404,8 @@
       const wrap = document.getElementById('writing-list'), empty = document.getElementById('writing-empty');
       if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
       items.forEach(w=>{
-        const postUrl = `post.html?src=${encodeURIComponent('writings/' + w.file)}&title=${encodeURIComponent(w.title || '')}`;
         const el = document.createElement('article'); el.className='card';
-        el.innerHTML = `<h3><a href="${postUrl}" target="_blank" rel="noopener">${w.title}</a></h3>
+        el.innerHTML = `<h3><a href="post.html?src=writings/${w.file}" target="_blank" rel="noopener">${w.title}</a></h3>
                         <p class="muted">${w.description||''}</p>
                         <div>${(w.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
         wrap.appendChild(el);
@@ -425,7 +428,7 @@
       });
     }).catch(()=>document.getElementById('carving-empty').style.display='block');
 
-    // Carpentry 
+    // Carpentry
     fetch('carpentry/index.json').then(r=>r.json()).then(items=>{
       const grid = document.getElementById('carpentry-grid'), empty = document.getElementById('carpentry-empty');
       if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
@@ -503,43 +506,44 @@
       fetch('experience/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{
         if(Array.isArray(items) && items.length){ items.forEach(renderRole); } else { throw new Error(); }
       }).catch(()=>{
+        // Fallback sample roles if JSON file missing
         const sample=[
-          {role:'Data Engineer', org:'Neurocraft', location:'Remote', dates:'2024–2025', bullets:['Built machinist data collection app on Azure Static Web Apps','Fabric/OneLake + Power BI dashboards for ops metrics','Automated PDF wear-and-tear reports with maintenance recs'], tech:['Azure','Fabric','OneLake','Power BI','Python']},
-          {role:'Risk Analytics Consultant II', org:'Wells Fargo', location:'Minneapolis, MN', dates:'2024', bullets:['Python scripts to validate legal doc language vs accounting data','Recurring SQL extracts and partner reporting','Power Automate forms for daily data capture'], tech:['Python','SQL','Power Automate']},
-          {role:'Senior Analytics Consultant', org:'Wells Fargo', location:'Minneapolis, MN', dates:'2023–2024', bullets:['GitHub-based dev cycle guide for analytics code','Common Python DB framework for Oracle/Teradata (SAS replacement)','Monthly Power BI dashboard for enterprise risk by location'], tech:['Python','Oracle','Teradata','Power BI']}
+          {role:'Data Engineer', org:'Neurocraft', location:'Remote', dates:'2024–2025', bullets:['Built machinist data collection app on Azure Static Web Apps','Fabric/OneLake + Power BI dashboards','Automated PDF wear-and-tear reports'], tech:['Azure','Fabric','Power BI','Python']},
+          {role:'Senior Analytics Consultant', org:'Wells Fargo', location:'Minneapolis, MN', dates:'2023–2024', bullets:['Common Python DB framework (Oracle/Teradata)','Monthly Power BI enterprise risk dashboard'], tech:['Python','Oracle','Teradata','Power BI']}
         ];
         sample.forEach(renderRole); empty.style.display='none';
       });
     })();
 
-    // Volunteer (JSON-driven)
+    // VOLUNTEER (JSON-driven)
     (function(){
-      const list  = document.getElementById('vol-list');
-      const empty = document.getElementById('vol-empty');
-
-      function renderItem(x){
-        const card = document.createElement('div'); card.className='xp-card';
-        const bullets = (x.bullets || []).map(b => `<li>${b}</li>`).join('');
+      const list=document.getElementById('vol-list'); const empty=document.getElementById('vol-empty');
+      function renderVol(v){
+        const card=document.createElement('div'); card.className='vol-card';
+        const tech=(v.tech||[]).map(t=>`<span class='tag'>${t}</span>`).join('');
+        const bullets=(v.bullets||[]).map(b=>`<li>${b}</li>`).join('');
         card.innerHTML = `
-          <div class="xp-item">
+          <div class="vol-item">
             <div>
-              <div class="xp-role">${x.role}</div>
-              <div class="xp-org">${x.org}${x.location ? ` — ${x.location}` : ''}</div>
+              <div class="vol-role">${v.role}</div>
+              <div class="vol-org">${v.org}${v.location?` — ${v.location}`:''}</div>
             </div>
-            <div class="muted">${x.dates || ''}</div>
+            <div class="muted">${v.dates||''}</div>
           </div>
-          ${bullets ? `<ul class="xp-bullets">${bullets}</ul>` : ''}
+          ${bullets?`<ul class="vol-bullets">${bullets}</ul>`:''}
+          ${tech?`<div class="vol-tech">${tech}</div>`:''}
         `;
         list.appendChild(card);
       }
-
-      fetch('volunteer/index.json')
-        .then(r => r.ok ? r.json() : Promise.reject())
-        .then(items => {
-          if (Array.isArray(items) && items.length){ items.forEach(renderItem); }
-          else { empty.style.display = 'block'; }
-        })
-        .catch(() => { empty.style.display = 'block'; });
+      fetch('volunteer/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{
+        if(Array.isArray(items) && items.length){ items.forEach(renderVol); } else { throw new Error(); }
+      }).catch(()=>{
+        // Fallback example so the section still renders
+        const sample=[
+          {role:'Mentor', org:'Local Coding Nonprofit', location:'Minneapolis, MN', dates:'2024–present', bullets:['Pair-programming with beginners','Weekly office hours'], tech:['Python','Git']}
+        ];
+        sample.forEach(renderVol); empty.style.display='none';
+      });
     })();
 
     // Investments & Analyses
@@ -561,8 +565,7 @@
       }).catch(()=>{
         const sample=[
           {title:'Predicting parts wear to cut downtime', thesis:'Light ML + structured telemetry to schedule maintenance before failure.', metrics:['AUC .84','↓ downtime 12%'], link:'#'},
-          {title:'Menu mix & waste analytics', thesis:'Simple Cohort + contribution margin views to tune SKUs.', metrics:['↑ margin 4.2%'], link:'#'},
-          {title:'Small-cap screening notes', thesis:'Quality + cash flow checklist; flags surfaced in a Power BI sheet.', metrics:['DIY research'], link:'#'}
+          {title:'Menu mix & waste analytics', thesis:'Cohorts + contribution margin views to tune SKUs.', metrics:['↑ margin 4.2%'], link:'#'}
         ];
         sample.forEach(render); empty.style.display='none';
       });
@@ -612,7 +615,7 @@
       update();
     })();
 
-    // Schedule mail & Google Calendar link (prefilled)
+    // Schedule by email + quick GCal template (free)
     (function(){
       const mail=document.getElementById('schedule-mail'); const gcal=document.getElementById('gcal-link');
       function nextSlots(){
@@ -633,14 +636,28 @@
       gcal && (gcal.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${s}%2F${e}&details=${details}&ctz=America/Chicago&add=crawnicles@gmail.com`);
     })();
   </script>
+
+  <!-- Featured Video (YouTube) loader -->
   <script>
-    // Featured Video (YouTube) loader
     (function(){
       const mount=document.getElementById('video-wrap'); const meta=document.getElementById('video-meta'); const empty=document.getElementById('video-empty');
       function ytIdFromUrl(u){ try{ const url=new URL(u); if(url.hostname.includes('youtu.be')) return url.pathname.slice(1); const id=url.searchParams.get('v'); return id; }catch(e){ return null; } }
-      function render(id,title,desc){ if(!id||!mount){ empty && (empty.style.display='block'); return; } const iframe=document.createElement('iframe'); iframe.src=`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`; iframe.title=title||'YouTube video'; iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; iframe.allowFullscreen=true; mount.appendChild(iframe); if(meta){ meta.innerHTML = `${title?`<strong>${title}</strong>`:''} ${desc?`<div>${desc}</div>`:''}`; } }
-      fetch('video/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(v=>{ const id = v.youtubeId || ytIdFromUrl(v.url); render(id, v.title, v.description); })
-      .catch(()=>{ render('ysz5S6PUM-U','Sample demo video','Replace by creating /video/index.json with your own YouTube ID.'); });
+      function render(id,title,desc){
+        if(!id||!mount){ empty && (empty.style.display='block'); return; }
+        const iframe=document.createElement('iframe');
+        iframe.src=`https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`;
+        iframe.title=title||'YouTube video';
+        iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen=true;
+        mount.appendChild(iframe);
+        if(meta){ meta.innerHTML = `${title?`<strong>${title}</strong>`:''} ${desc?`<div>${desc}</div>`:''}`; }
+      }
+      fetch('video/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(v=>{
+        const id = v.youtubeId || ytIdFromUrl(v.url);
+        render(id, v.title, v.description);
+      }).catch(()=>{
+        render('ysz5S6PUM-U','Sample demo video','Replace by creating /video/index.json with your own YouTube ID.');
+      });
     })();
   </script>
 </body>
