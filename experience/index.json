@@ -1,53 +1,116 @@
 [
-  {
-    "role": "Data Engineer",
-    "org": "Neurocraft",
-    "location": "Remote",
-    "dates": "2024\u20132025",
-    "bullets": [
-      "Built machinist data collection app on Azure Static Web Apps",
-      "Fabric/OneLake + Power BI dashboards for ops metrics",
-      "Automated PDF wear-and-tear reports with maintenance recs"
-    ],
-    "tech": [
-      "Azure",
-      "Fabric",
-      "OneLake",
-      "Power BI",
-      "Python"
-    ]
-  },
-  {
-    "role": "Risk Analytics Consultant II",
-    "org": "Wells Fargo",
-    "location": "Minneapolis, MN",
-    "dates": "2024",
-    "bullets": [
-      "Python scripts to validate legal doc language vs accounting data",
-      "Recurring SQL extracts and partner reporting",
-      "Power Automate forms for daily data capture"
-    ],
-    "tech": [
-      "Python",
-      "SQL",
-      "Power Automate"
-    ]
-  },
-  {
-    "role": "Senior Analytics Consultant",
-    "org": "Wells Fargo",
-    "location": "Minneapolis, MN",
-    "dates": "2023\u20132024",
-    "bullets": [
-      "GitHub-based dev cycle guide for analytics code",
-      "Common Python DB framework for Oracle/Teradata (SAS replacement)",
-      "Monthly Power BI dashboard for enterprise risk by location"
-    ],
-    "tech": [
-      "Python",
-      "Oracle",
-      "Teradata",
-      "Power BI"
-    ]
-  }
+    {
+      "role": "Tennis in Your Park Instructor",
+      "org": "City Parks & Rec",
+      "location": "Minneapolis, MN",
+      "dates": "2025–Present",
+      "bullets": [
+        "Lead beginner and intermediate lessons focused on footwork, consistency, and match play.",
+        "Design progressive drills and small-group activities for mixed ages."
+      ],
+      "tech": ["Coaching", "Program design", "Youth & adult"]
+    },
+    {
+      "role": "Roving Umpire",
+      "org": "USTA & College Tennis",
+      "location": "Upper Midwest",
+      "dates": "2025–Present",
+      "bullets": [
+        "Officiate dual matches and tournaments; enforce ITA/USTA rules.",
+        "Manage time violations, scoring disputes, and court assignments."
+      ],
+      "tech": ["USTA rules", "ITA", "Match ops"]
+    },
+    {
+      "role": "Data Engineer",
+      "org": "Neurocraft",
+      "location": "Remote",
+      "dates": "2024–2025",
+      "bullets": [
+        "Built machinist data collection app on Azure Static Web Apps.",
+        "Fabric/OneLake + Power BI dashboards for ops metrics.",
+        "Automated PDF wear-and-tear reports with maintenance recs."
+      ],
+      "tech": ["Azure", "Fabric", "OneLake", "Power BI", "Python"]
+    },
+    {
+      "role": "Risk Analytics Consultant II",
+      "org": "Wells Fargo",
+      "location": "Minneapolis, MN",
+      "dates": "2024",
+      "bullets": [
+        "Python scripts to validate legal doc language vs accounting data.",
+        "Recurring SQL extracts and partner reporting automation.",
+        "Power Automate forms for daily data capture."
+      ],
+      "tech": ["Python", "SQL", "Power Automate"]
+    },
+    {
+      "role": "Teaching Assistant — AI Boot Camp",
+      "org": "Columbia Engineering (2U, Inc.)",
+      "location": "Remote",
+      "dates": "2024–2025",
+      "bullets": [
+        "Mentored cohorts in Python, ML, and applied AI project work.",
+        "Held office hours and graded sprint deliverables."
+      ],
+      "tech": ["Python", "Pandas", "Scikit-learn", "LLMs"]
+    },
+    {
+      "role": "Senior Analytics Consultant",
+      "org": "Wells Fargo",
+      "location": "Minneapolis, MN",
+      "dates": "2023–2024",
+      "bullets": [
+        "GitHub-based dev cycle guide for analytics code.",
+        "Common Python DB framework for Oracle/Teradata (SAS replacement).",
+        "Monthly Power BI dashboard for enterprise risk by location."
+      ],
+      "tech": ["Python", "Oracle", "Teradata", "Power BI"]
+    },
+    {
+      "role": "Associate Software Engineer",
+      "org": "Revature",
+      "location": "Remote",
+      "dates": "2022",
+      "bullets": [
+        "Full-stack fundamentals and enterprise project exercises.",
+        "Agile team collaboration and code reviews."
+      ],
+      "tech": ["Java", "SQL", "Git"]
+    },
+    {
+      "role": "Teaching Assistant — FinTech Boot Camp",
+      "org": "University of Minnesota (2U, Inc.)",
+      "location": "Minneapolis, MN",
+      "dates": "2022–2023",
+      "bullets": [
+        "Supported modules on Python for finance, data pipelines, and dashboards.",
+        "Assisted capstone teams from ideation to demo."
+      ],
+      "tech": ["Python", "APIs", "Dashboards"]
+    },
+    {
+      "role": "SWIFT Support Analyst",
+      "org": "U.S. Bank",
+      "location": "Minneapolis, MN",
+      "dates": "2021–2022",
+      "bullets": [
+        "Monitored and triaged SWIFT message flows and exceptions.",
+        "Coordinated incident resolution across payments operations and tech."
+      ],
+      "tech": ["SWIFT", "Payments ops", "Incident mgmt"]
+    },
+    {
+      "role": "Capital Markets Analyst I",
+      "org": "Wells Fargo",
+      "location": "Minneapolis, MN",
+      "dates": "2019–2021",
+      "bullets": [
+        "Supported reporting and analysis for capital markets teams.",
+        "Built repeatable reporting workflows."
+      ],
+      "tech": ["Excel", "SQL", "Reporting"]
+    }
+  
 ]

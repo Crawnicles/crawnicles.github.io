@@ -43,14 +43,14 @@
       background:
         radial-gradient(700px 200px at 10% 0%, rgba(255,182,193,.18), transparent 60%),
         radial-gradient(700px 200px at 90% -10%, rgba(255,222,233,.28), transparent 60%),
-        url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'><g fill=\'%23ffd6e5\' opacity=\'0.35\'><circle cx=\'20\' cy=\'20\' r=\'2\'/><circle cx=\'120\' cy=\'140\' r=\'1.6\'/></g></svg>');
+        url('data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><g fill='%23ffd6e5' opacity='0.35'><circle cx='20' cy='20' r='2'/><circle cx='120' cy='140' r='1.6'/></g></svg>');
       background-repeat:repeat;
     }
     body.theme-aomi::before{content:""; position:fixed; inset:0; pointer-events:none; opacity:.28;
       background:
         radial-gradient(900px 260px at 50% -120px, rgba(64,132,255,.25), transparent 60%),
         radial-gradient(900px 260px at 20% -80px, rgba(0,180,216,.18), transparent 70%),
-        url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'220\' height=\'140\'><path d=\'M0 70 Q55 40 110 70 T220 70 V140 H0Z\' fill=\'%230e1a30\' opacity=\'0.45\'/></svg>');
+        url('data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='140'><path d='M0 70 Q55 40 110 70 T220 70 V140 H0Z' fill='%230e1a30' opacity='0.45'/></svg>');
       background-repeat:repeat-x, repeat-x, repeat;
     }
 
@@ -185,7 +185,6 @@
         <div class="controls">
           <a class="pill" href="#projects">Projects</a>
           <a class="pill" href="#experience">Experience</a>
-          <a class="pill" href="#volunteer">Volunteer</a>
           <a class="pill" href="#writings">Writings</a>
           <a class="pill" href="#woodcarving">Woodcarving</a>
           <a class="pill" href="#carpentry">Carpentry</a>
@@ -232,6 +231,7 @@
           <div class="muted">Python · FastAPI · RAG/Embeddings · Postgres · Frontend</div>
           <div class="project-links">
             <a class="btn github" href="https://github.com/Crawnicles/Recommend_books" target="_blank" rel="noopener">View on GitHub</a>
+            <!-- @TODO: optional live demo link -->
             <a class="btn demo" href="#" target="_blank" rel="noopener">Live Demo</a>
           </div>
         </article>
@@ -248,6 +248,7 @@
           <p>Django app to aggregate investments and generate quarterly PDFs. Includes restaurant waste analytics. Private</p>
           <div class="muted">Django · Celery · Postgres · Pandas</div>
           <div class="project-links">
+            <!-- @TODO: replace # with your GitHub repo URL -->
             <a class="btn github" href="#" target="_blank" rel="noopener">View on GitHub</a>
           </div>
         </article>
@@ -261,16 +262,6 @@
       <p class="muted">Structured for quick scanning. Edit <span class="tag">/experience/index.json</span> to update roles, dates, bullets, and tech.</p>
       <div id="xp-list" class="grid g-2" style="margin-top:1rem"></div>
       <div id="xp-empty" class="muted" style="display:none">No experience found.</div>
-    </section>
-
-    <div class="rule"></div>
-
-    <!-- Volunteer section -->
-    <section id="volunteer" class="reveal">
-      <h2>Volunteer</h2>
-      <p class="muted">Edit <span class="tag">/volunteer/index.json</span> to update volunteer roles.</p>
-      <div id="vol-list" class="grid g-2" style="margin-top:1rem"></div>
-      <div id="vol-empty" class="muted" style="display:none">No volunteer entries yet.</div>
     </section>
 
     <div class="rule"></div>
@@ -400,9 +391,8 @@
       const wrap = document.getElementById('writing-list'), empty = document.getElementById('writing-empty');
       if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
       items.forEach(w=>{
-        const postUrl = `post.html?src=${encodeURIComponent('writings/' + w.file)}&title=${encodeURIComponent(w.title || '')}`;
         const el = document.createElement('article'); el.className='card';
-        el.innerHTML = `<h3><a href="${postUrl}" target="_blank" rel="noopener">${w.title}</a></h3>
+        el.innerHTML = `<h3><a href="post.html?src=writings/${w.file}" target="_blank" rel="noopener">${w.title}</a></h3>
                         <p class="muted">${w.description||''}</p>
                         <div>${(w.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
         wrap.appendChild(el);
@@ -511,36 +501,7 @@
         sample.forEach(renderRole); empty.style.display='none';
       });
     })();
-
-    // Volunteer (JSON-driven)
-    (function(){
-      const list  = document.getElementById('vol-list');
-      const empty = document.getElementById('vol-empty');
-
-      function renderItem(x){
-        const card = document.createElement('div'); card.className='xp-card';
-        const bullets = (x.bullets || []).map(b => `<li>${b}</li>`).join('');
-        card.innerHTML = `
-          <div class="xp-item">
-            <div>
-              <div class="xp-role">${x.role}</div>
-              <div class="xp-org">${x.org}${x.location ? ` — ${x.location}` : ''}</div>
-            </div>
-            <div class="muted">${x.dates || ''}</div>
-          </div>
-          ${bullets ? `<ul class="xp-bullets">${bullets}</ul>` : ''}
-        `;
-        list.appendChild(card);
-      }
-
-      fetch('volunteer/index.json')
-        .then(r => r.ok ? r.json() : Promise.reject())
-        .then(items => {
-          if (Array.isArray(items) && items.length){ items.forEach(renderItem); }
-          else { empty.style.display = 'block'; }
-        })
-        .catch(() => { empty.style.display = 'block'; });
-    })();
+    
 
     // Investments & Analyses
     (function(){
@@ -594,6 +555,7 @@
       let widget=null, ready=false, playing=false, queued=false;
       function label(){ return ready ? (playing ? '♫ on' : '♫ off') : '♫ …'; }
       function update(){ if(btn){ btn.textContent = label(); btn.setAttribute('aria-pressed', playing ? 'true' : 'false'); btn.title = ready ? 'Toggle focus audio' : 'Loading…'; } }
+      // Initialize once SoundCloud API is ready
       window.addEventListener('load',()=>{
         try{
           widget = window.SC && SC.Widget(iframe);
@@ -604,6 +566,7 @@
           update();
         }catch(e){ /* keep quiet */ }
       });
+      // User click
       btn?.addEventListener('click',()=>{
         if(!widget){ update(); return; }
         if(!ready){ queued=true; update(); return; }
@@ -633,6 +596,11 @@
       gcal && (gcal.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${s}%2F${e}&details=${details}&ctz=America/Chicago&add=crawnicles@gmail.com`);
     })();
   </script>
+
+
+
+
+
   <script>
     // Featured Video (YouTube) loader
     (function(){
