@@ -1,14 +1,39 @@
 [
   {
-    "q": "How do you approach ambiguous problems?",
-    "a": "Shrink scope, ship a measurable slice, iterate with real feedback."
+    "q": "Why Vipassana?",
+    "a": "Ten days of silence taught me that most of my suffering was self-created. Now I sit every morning. It's the closest thing I have to a superpower."
   },
   {
-    "q": "Favorite part of ML work?",
-    "a": "Turning messy context into a reliable loop: collect \u2192 clean \u2192 model \u2192 measure \u2192 adjust."
+    "q": "The dream that won't go away",
+    "a": "M Courts — lowered basketball hoops where anyone can dunk. I want to build them in parks across the country and start a rec league. Basketball was my flow state as a kid."
   },
   {
-    "q": "A project you\u2019re proud of?",
-    "a": "A writing assistant that ingests my journals and Goodreads to suggest edits and book recs I actually use."
+    "q": "I learned to carve from...",
+    "a": "My mom. She's a master woodcarver who's sold thousands of pieces over the years. I grew up watching her turn blocks of wood into something alive."
+  },
+  {
+    "q": "A perfect Saturday",
+    "a": "Morning meditation, a long hike with Tracy and the dogs, then dinner with the homies where someone says something that makes everyone lose it."
+  },
+  {
+    "q": "Book I've gifted most",
+    "a": "Poor Charlie's Almanack. The chapter on human misjudgment changed how I see decisions. \"Invert, always invert.\""
+  },
+  {
+    "q": "Unpopular opinion",
+    "a": "I don't bowl, don't do escape rooms, don't watch movies or shows sober, and I'm not interested in regular season sports. Life's too short for forced fun."
+  },
+  {
+    "q": "Contrarian take",
+    "a": "No amount of thinking will help you pick the right partner or career. It's a feeling in your body you have to pay attention to. Your gut knows before your brain does."
+  },
+  {
+    "q": "Best trips I've taken",
+    "a": "Nara, Japan — deer bowing for treats, ancient temples, perfect calm. Isle Royale — remote, no cell service, wolves and moose. The kind of trips that make you feel alive.",
+    "photos": ["japan1.JPG", "japan2.JPG"]
+  },
+  {
+    "q": "I'm happiest when...",
+    "a": "I'm building something with my hands, whether it's code, wood, or a deck at a wilderness center. The overlap of mental and physical work is where I come alive."
   }
 ]
