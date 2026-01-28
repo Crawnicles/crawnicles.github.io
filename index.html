@@ -298,7 +298,7 @@
 
     <section id="woodcarving" class="reveal">
       <h2>Woodcarving</h2>
-      <p class="muted">Place photos in <span class="tag">/carvings</span> and map them in <span class="tag">/carvings/index.json</span>. Click for a lightbox.</p>
+      <p class="muted">Click for a lightbox. Follow along on <a href="https://instagram.com/cwoodbark" target="_blank" rel="noopener" style="color:var(--accent-2)">@cwoodbark</a></p>
       <div id="carving-gallery" class="grid g-3" style="margin-top:1rem"></div>
       <div id="carving-empty" class="muted" style="display:none">No images found (check filenames & JSON).</div>
       <div id="lightbox" aria-hidden="true"><img id="lightbox-img" alt="Woodcarving full view"/></div>
@@ -422,7 +422,8 @@
       if(!Array.isArray(items) || !items.length){ emptyGal.style.display='block'; return; }
       items.forEach(item=>{
         const fig = document.createElement('figure'); fig.className='card'; fig.style.cursor='zoom-in';
-        fig.innerHTML = `<img loading="lazy" alt="${item.title}" src="carvings/${item.src}"/><figcaption style="margin-top:.5rem;font-weight:600">${item.title}</figcaption>`;
+        const igLink = item.instagram ? `<a href="${item.instagram}" target="_blank" rel="noopener" style="margin-left:.5rem;color:var(--accent-2);font-size:.85rem" onclick="event.stopPropagation()">View on IG</a>` : '';
+        fig.innerHTML = `<img loading="lazy" alt="${item.title}" src="carvings/${item.src}"/><figcaption style="margin-top:.5rem;font-weight:600">${item.title}${igLink}</figcaption>`;
         fig.addEventListener('click',()=>openLightbox(`carvings/${item.src}`));
         gallery.appendChild(fig);
       });
