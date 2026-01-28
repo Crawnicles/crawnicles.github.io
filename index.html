@@ -118,6 +118,25 @@
     #gallery-lightbox .gallery-close{position:absolute; top:-2.5rem; right:0; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer}
     @media(max-width:700px){#gallery-lightbox .gallery-prev{left:10px} #gallery-lightbox .gallery-next{right:10px}}
 
+    /* Book shelf */
+    #book-shelf{display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:flex-start}
+    .book{position:relative; width:140px; perspective:1000px; cursor:pointer}
+    .book-cover{width:140px; height:210px; border-radius:4px 12px 12px 4px; display:flex; flex-direction:column; justify-content:flex-end; padding:1rem .8rem; box-sizing:border-box;
+      box-shadow:4px 4px 12px rgba(0,0,0,.4), inset -2px 0 4px rgba(255,255,255,.1); transition:transform .3s ease, box-shadow .3s ease; position:relative; overflow:hidden}
+    .book-cover::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(90deg, rgba(0,0,0,.3), transparent)}
+    .book-cover::after{content:""; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,.08), transparent 50%); pointer-events:none}
+    .book:hover .book-cover{transform:rotateY(-12deg) scale(1.02); box-shadow:8px 8px 20px rgba(0,0,0,.5)}
+    .book-cover .title{font-family:"Noto Serif JP","Crimson Pro",serif; font-size:.95rem; font-weight:700; line-height:1.2; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5)}
+    .book-cover .author{font-size:.75rem; color:rgba(255,255,255,.8); margin-top:.3rem; text-shadow:0 1px 2px rgba(0,0,0,.4)}
+    .book-insight{position:absolute; top:100%; left:50%; transform:translateX(-50%); width:280px; background:var(--card); border:1px solid var(--ring); border-radius:12px; padding:1rem; margin-top:.8rem;
+      opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease; z-index:20; box-shadow:var(--shadow)}
+    .book-insight::before{content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%); border:8px solid transparent; border-top:none; border-bottom-color:var(--ring)}
+    .book.open .book-insight{opacity:1; visibility:visible}
+    .book-insight .insight-title{font-weight:700; font-size:.9rem; margin-bottom:.4rem}
+    .book-insight .insight-text{font-size:.85rem; color:var(--muted); line-height:1.5}
+    .book-insight .insight-quote{font-style:italic; border-left:2px solid var(--accent); padding-left:.6rem; margin-top:.6rem; font-size:.85rem; color:var(--muted)}
+    @media(max-width:600px){.book{width:110px} .book-cover{width:110px; height:165px; padding:.8rem .6rem} .book-cover .title{font-size:.8rem} .book-insight{width:240px}}
+
     /* Carpentry grid */
     #carpentry-grid .tile{position:relative; overflow:hidden; border-radius:14px; border:1px solid var(--ring); background:var(--card); box-shadow:var(--shadow)}
     #carpentry-grid img{width:100%; height:220px; object-fit:cover; display:block}
@@ -338,9 +357,9 @@
     <div class="rule"></div>
 
     <section id="books" class="reveal">
-      <h2>Library — Books</h2>
-      <p class="muted">Update <span class="tag">/books/index.json</span> with title, author, rating (0–5), notes, and optional <code>quote</code>.</p>
-      <div id="book-shelf" class="grid g-3" style="margin-top:1rem"></div>
+      <h2>Library</h2>
+      <p class="muted">Books that shaped my thinking. Click a spine to see what stuck with me.</p>
+      <div id="book-shelf" style="margin-top:1rem"></div>
       <div id="book-empty" class="muted" style="display:none">No books yet.</div>
     </section>
 
@@ -512,27 +531,30 @@
       }).catch(()=>document.getElementById('carpentry-empty').style.display='block');
     })();
 
-    // Books (with optional quote drawer)
+    // Books (cover display with expandable insights)
     fetch('books/index.json').then(r=>r.json()).then(items=>{
       const shelf = document.getElementById('book-shelf'), empty = document.getElementById('book-empty');
       if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
       items.forEach(b=>{
         const el = document.createElement('div'); el.className='book';
-        const quote = b.quote ? `<blockquote style="margin:.5rem 0 0; padding-left:.8rem; border-left:2px solid var(--ring); color:var(--muted)">“${b.quote}”</blockquote>` : '';
+        const quote = b.quote ? `<div class="insight-quote">"${b.quote}"</div>` : '';
         el.innerHTML = `
-          <div class="spine" style="--cover:${b.cover_color||'linear-gradient(135deg,#cbb88a,#9a855a)'}">
-            <span class="spine-title">${b.title}</span>
-            <span class="spine-author">${b.author||''}</span>
-            <span class="spine-seal" aria-hidden="true"></span>
+          <div class="book-cover" style="background:${b.cover||'linear-gradient(145deg,#4a3728,#2d1f15)'}">
+            <div class="title">${b.title}</div>
+            <div class="author">${b.author||''}</div>
           </div>
-          <div class="book-note">
-            <div class="stars" aria-label="Rating">${'★★★★★'.split('').map((s,i)=>`<span style="color:${i < (b.rating||0) ? '#f5b301':'#3b4250'}">★</span>`).join('')}</div>
-            <p>${b.note||''}</p>
+          <div class="book-insight">
+            <div class="insight-title">${b.title}</div>
+            <div class="insight-text">${b.insight||''}</div>
             ${quote}
           </div>`;
-        el.querySelector('.spine').addEventListener('click',()=>{ el.classList.toggle('open'); });
+        el.addEventListener('click',(e)=>{
+          document.querySelectorAll('.book.open').forEach(x=>{ if(x!==el) x.classList.remove('open'); });
+          el.classList.toggle('open');
+        });
         shelf.appendChild(el);
       });
+      document.addEventListener('click',(e)=>{ if(!e.target.closest('.book')) document.querySelectorAll('.book.open').forEach(x=>x.classList.remove('open')); });
     }).catch(()=>document.getElementById('book-empty').style.display='block');
 
     // Ask Andrew (Q&A)
