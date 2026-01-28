@@ -119,17 +119,19 @@
     @media(max-width:700px){#gallery-lightbox .gallery-prev{left:10px} #gallery-lightbox .gallery-next{right:10px}}
 
     /* Book shelf */
-    #book-shelf{display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:flex-start}
-    .book{position:relative; width:140px; perspective:1000px; cursor:pointer}
+    #book-shelf{display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:flex-start; position:relative; z-index:10}
+    .book{position:relative; width:140px; perspective:1000px; cursor:pointer; z-index:1}
+    .book.open{z-index:100}
     .book-cover{width:140px; height:210px; border-radius:4px 12px 12px 4px; display:flex; flex-direction:column; justify-content:flex-end; padding:1rem .8rem; box-sizing:border-box;
-      box-shadow:4px 4px 12px rgba(0,0,0,.4), inset -2px 0 4px rgba(255,255,255,.1); transition:transform .3s ease, box-shadow .3s ease; position:relative; overflow:hidden}
+      box-shadow:4px 4px 12px rgba(0,0,0,.4), inset -2px 0 4px rgba(255,255,255,.1); transition:transform .3s ease, box-shadow .3s ease; position:relative; overflow:hidden; background-size:cover; background-position:center}
     .book-cover::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:linear-gradient(90deg, rgba(0,0,0,.3), transparent)}
     .book-cover::after{content:""; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,.08), transparent 50%); pointer-events:none}
     .book:hover .book-cover{transform:rotateY(-12deg) scale(1.02); box-shadow:8px 8px 20px rgba(0,0,0,.5)}
-    .book-cover .title{font-family:"Noto Serif JP","Crimson Pro",serif; font-size:.95rem; font-weight:700; line-height:1.2; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5)}
-    .book-cover .author{font-size:.75rem; color:rgba(255,255,255,.8); margin-top:.3rem; text-shadow:0 1px 2px rgba(0,0,0,.4)}
+    .book-cover .title{font-family:"Noto Serif JP","Crimson Pro",serif; font-size:.95rem; font-weight:700; line-height:1.2; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.8), 0 0 8px rgba(0,0,0,.6)}
+    .book-cover .author{font-size:.75rem; color:rgba(255,255,255,.9); margin-top:.3rem; text-shadow:0 1px 2px rgba(0,0,0,.8)}
+    .book-cover.has-image .title, .book-cover.has-image .author{opacity:0}
     .book-insight{position:absolute; top:100%; left:50%; transform:translateX(-50%); width:280px; background:var(--card); border:1px solid var(--ring); border-radius:12px; padding:1rem; margin-top:.8rem;
-      opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease; z-index:20; box-shadow:var(--shadow)}
+      opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease; z-index:200; box-shadow:0 12px 40px rgba(0,0,0,.6)}
     .book-insight::before{content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%); border:8px solid transparent; border-top:none; border-bottom-color:var(--ring)}
     .book.open .book-insight{opacity:1; visibility:visible}
     .book-insight .insight-title{font-weight:700; font-size:.9rem; margin-bottom:.4rem}
@@ -538,8 +540,10 @@
       items.forEach(b=>{
         const el = document.createElement('div'); el.className='book';
         const quote = b.quote ? `<div class="insight-quote">"${b.quote}"</div>` : '';
+        const hasImage = b.cover_image ? 'has-image' : '';
+        const bgStyle = b.cover_image ? `background-image:url('${b.cover_image}');background-color:${b.cover||'#2d1f15'}` : `background:${b.cover||'linear-gradient(145deg,#4a3728,#2d1f15)'}`;
         el.innerHTML = `
-          <div class="book-cover" style="background:${b.cover||'linear-gradient(145deg,#4a3728,#2d1f15)'}">
+          <div class="book-cover ${hasImage}" style="${bgStyle}">
             <div class="title">${b.title}</div>
             <div class="author">${b.author||''}</div>
           </div>

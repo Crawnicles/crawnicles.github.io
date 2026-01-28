@@ -2,56 +2,64 @@
   {
     "title": "Poor Charlie's Almanack",
     "author": "Charlie Munger",
-    "cover": "linear-gradient(145deg,#8b0000,#4a0000)",
+    "cover": "#8b0000",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/1578645018-L.jpg",
     "insight": "The psychology of human misjudgment chapter alone is worth the price. Munger's mental models approach changed how I think about decisions.",
     "quote": "Invert, always invert."
   },
   {
     "title": "Chronicles: Volume One",
     "author": "Bob Dylan",
-    "cover": "linear-gradient(145deg,#1a1a2e,#0f0f1a)",
+    "cover": "#1a1a2e",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0743244583-L.jpg",
     "insight": "Dylan writes about New York in the early 60s like he's painting it. The way he describes discovering folk music in the Village is pure poetry.",
     "quote": "I had ambitions to set out and find like an odyssey or some kind of cup of gold."
   },
   {
     "title": "American Gods",
     "author": "Neil Gaiman",
-    "cover": "linear-gradient(145deg,#2c3e50,#1a252f)",
+    "cover": "#2c3e50",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0063081911-L.jpg",
     "insight": "Old gods brought to America by immigrants, fading as belief fades. The roadside attractions chapter is haunting and funny.",
     "quote": "People believe things, which means they're easy to fool."
   },
   {
     "title": "Good Omens",
     "author": "Terry Pratchett & Neil Gaiman",
-    "cover": "linear-gradient(145deg,#b8860b,#8b6914)",
+    "cover": "#b8860b",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0060853980-L.jpg",
     "insight": "An angel and a demon trying to stop the apocalypse because they've grown fond of Earth. Every page has a joke that lands.",
     "quote": "It may help to understand human affairs to be clear that most of the great triumphs and tragedies of history are caused, not by people being fundamentally good or fundamentally bad, but by people being fundamentally people."
   },
   {
     "title": "Right Ho, Jeeves",
     "author": "P.G. Wodehouse",
-    "cover": "linear-gradient(145deg,#006400,#003d00)",
+    "cover": "#006400",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0140284095-L.jpg",
     "insight": "The funniest sentences in the English language. Wodehouse makes you laugh out loud on trains and look like a maniac. Pure joy.",
     "quote": "There is only one cure for gray hair. It was invented by a Frenchman. It is called the guillotine."
   },
   {
     "title": "The 4-Hour Workweek",
     "author": "Tim Ferriss",
-    "cover": "linear-gradient(145deg,#ff6b35,#c54b25)",
+    "cover": "#ff6b35",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0307465357-L.jpg",
     "insight": "Ignore the title. The real value is learning to question default assumptions about work, time, and what you actually want.",
     "quote": "What we fear doing most is usually what we most need to do."
   },
   {
     "title": "The Hobbit",
     "author": "J.R.R. Tolkien",
-    "cover": "linear-gradient(145deg,#2b5136,#1a3321)",
+    "cover": "#2b5136",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0547928227-L.jpg",
     "insight": "A comfort reread. The maps, the songs, the riddles in the dark. Adventure that feels like home.",
     "quote": "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world."
   },
   {
     "title": "The Wind-Up Bird Chronicle",
     "author": "Haruki Murakami",
-    "cover": "linear-gradient(145deg,#2b2d42,#1a1b29)",
+    "cover": "#2b2d42",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0679775439-L.jpg",
     "insight": "Surreal and slow-burning. A man sits at the bottom of a well and the world unravels. Murakami teaches quiet persistence.",
     "quote": ""
   }
