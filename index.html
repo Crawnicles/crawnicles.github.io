@@ -105,6 +105,19 @@
     #lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; padding:2rem}
     #lightbox.open{display:flex} #lightbox-img{max-width:90vw; max-height:80vh; border-radius:12px; border:1px solid var(--ring); background:var(--card)}
 
+    /* Gallery lightbox for multi-image projects */
+    #gallery-lightbox{position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; padding:2rem; z-index:100}
+    #gallery-lightbox.open{display:flex}
+    #gallery-lightbox .gallery-container{position:relative; max-width:90vw; max-height:85vh}
+    #gallery-lightbox .gallery-img{max-width:90vw; max-height:80vh; border-radius:12px; border:1px solid var(--ring); background:var(--card); display:block}
+    #gallery-lightbox .gallery-nav{position:absolute; top:50%; transform:translateY(-50%); background:var(--card); border:1px solid var(--ring); border-radius:50%; width:48px; height:48px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.5rem; color:var(--ink); opacity:.8; transition:.2s}
+    #gallery-lightbox .gallery-nav:hover{opacity:1}
+    #gallery-lightbox .gallery-prev{left:-60px}
+    #gallery-lightbox .gallery-next{right:-60px}
+    #gallery-lightbox .gallery-counter{position:absolute; bottom:-2rem; left:50%; transform:translateX(-50%); color:var(--muted); font-size:.9rem}
+    #gallery-lightbox .gallery-close{position:absolute; top:-2.5rem; right:0; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:pointer}
+    @media(max-width:700px){#gallery-lightbox .gallery-prev{left:10px} #gallery-lightbox .gallery-next{right:10px}}
+
     /* Carpentry grid */
     #carpentry-grid .tile{position:relative; overflow:hidden; border-radius:14px; border:1px solid var(--ring); background:var(--card); box-shadow:var(--shadow)}
     #carpentry-grid img{width:100%; height:220px; object-fit:cover; display:block}
@@ -308,9 +321,18 @@
 
     <section id="carpentry" class="reveal">
       <h2>Carpentry</h2>
-      <p class="muted">Showcase techniques, joinery, and builds. Add entries in <span class="tag">/carpentry/index.json</span>.</p>
+      <p class="muted">Showcase techniques, joinery, and builds. Click to view project photos.</p>
       <div id="carpentry-grid" class="grid g-3" style="margin-top:1rem"></div>
       <div id="carpentry-empty" class="muted" style="display:none">No carpentry items yet.</div>
+      <div id="gallery-lightbox" aria-hidden="true">
+        <div class="gallery-container">
+          <button class="gallery-close" aria-label="Close">&times;</button>
+          <img class="gallery-img" alt="Project photo"/>
+          <button class="gallery-nav gallery-prev" aria-label="Previous">&larr;</button>
+          <button class="gallery-nav gallery-next" aria-label="Next">&rarr;</button>
+          <div class="gallery-counter"></div>
+        </div>
+      </div>
     </section>
 
     <div class="rule"></div>
@@ -429,25 +451,66 @@
       });
     }).catch(()=>document.getElementById('carving-empty').style.display='block');
 
-    // Carpentry
-    fetch('carpentry/index.json').then(r=>r.json()).then(items=>{
-      const grid = document.getElementById('carpentry-grid'), empty = document.getElementById('carpentry-empty');
-      if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
-      items.forEach(c=>{
-        const card = document.createElement('article'); card.className='tile';
-        card.innerHTML = `
-          <div class="hover"></div>
-          <img loading="lazy" alt="${c.title}" src="carpentry/${c.src}">
-          <div class="tile-body">
-            <h3>${c.title}</h3>
-            <p class="muted">${c.description||''}</p>
-            <div>${(c.skills||[]).map(s=>`<span class='skill-chip'>${s}</span>`).join('')}</div>
-            ${c.link ? `<p style=\"margin-top:.5rem\"><a class='tag' href='${c.link}' target='_blank' rel='noopener'>More</a></p>` : ''}
-          </div>`;
-        card.addEventListener('click',()=>openLightbox(`carpentry/${c.src}`));
-        grid.appendChild(card);
+    // Carpentry with gallery support
+    (function(){
+      const glb = document.getElementById('gallery-lightbox');
+      const gImg = glb?.querySelector('.gallery-img');
+      const gCounter = glb?.querySelector('.gallery-counter');
+      const gPrev = glb?.querySelector('.gallery-prev');
+      const gNext = glb?.querySelector('.gallery-next');
+      const gClose = glb?.querySelector('.gallery-close');
+      let galleryImages = [], galleryIndex = 0;
+
+      function showGalleryImage(){
+        if(!gImg || !galleryImages.length) return;
+        gImg.src = galleryImages[galleryIndex];
+        if(gCounter) gCounter.textContent = galleryImages.length > 1 ? `${galleryIndex + 1} / ${galleryImages.length}` : '';
+        if(gPrev) gPrev.style.display = galleryImages.length > 1 ? 'flex' : 'none';
+        if(gNext) gNext.style.display = galleryImages.length > 1 ? 'flex' : 'none';
+      }
+
+      function openGallery(images){
+        galleryImages = images; galleryIndex = 0;
+        showGalleryImage();
+        glb?.classList.add('open'); glb?.setAttribute('aria-hidden','false');
+      }
+
+      function closeGallery(){
+        glb?.classList.remove('open'); glb?.setAttribute('aria-hidden','true');
+        if(gImg) gImg.src = '';
+      }
+
+      gClose?.addEventListener('click', closeGallery);
+      glb?.addEventListener('click', (e)=>{ if(e.target === glb) closeGallery(); });
+      gPrev?.addEventListener('click', (e)=>{ e.stopPropagation(); galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length; showGalleryImage(); });
+      gNext?.addEventListener('click', (e)=>{ e.stopPropagation(); galleryIndex = (galleryIndex + 1) % galleryImages.length; showGalleryImage(); });
+      document.addEventListener('keydown', (e)=>{
+        if(!glb?.classList.contains('open')) return;
+        if(e.key === 'Escape') closeGallery();
+        if(e.key === 'ArrowLeft') { galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length; showGalleryImage(); }
+        if(e.key === 'ArrowRight') { galleryIndex = (galleryIndex + 1) % galleryImages.length; showGalleryImage(); }
       });
-    }).catch(()=>document.getElementById('carpentry-empty').style.display='block');
+
+      fetch('carpentry/index.json').then(r=>r.json()).then(items=>{
+        const grid = document.getElementById('carpentry-grid'), empty = document.getElementById('carpentry-empty');
+        if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
+        items.forEach(c=>{
+          const card = document.createElement('article'); card.className='tile';
+          const allImages = [`carpentry/${c.src}`, ...(c.gallery||[]).map(g=>`carpentry/${g}`)];
+          card.innerHTML = `
+            <div class="hover"></div>
+            <img loading="lazy" alt="${c.title}" src="carpentry/${c.src}">
+            <div class="tile-body">
+              <h3>${c.title}</h3>
+              <p class="muted">${c.description||''}</p>
+              <div>${(c.skills||[]).map(s=>`<span class='skill-chip'>${s}</span>`).join('')}</div>
+              ${c.link ? `<p style=\"margin-top:.5rem\"><a class='tag' href='${c.link}' target='_blank' rel='noopener'>More</a></p>` : ''}
+            </div>`;
+          card.addEventListener('click',()=>openGallery(allImages));
+          grid.appendChild(card);
+        });
+      }).catch(()=>document.getElementById('carpentry-empty').style.display='block');
+    })();
 
     // Books (with optional quote drawer)
     fetch('books/index.json').then(r=>r.json()).then(items=>{
