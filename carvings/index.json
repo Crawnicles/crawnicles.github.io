@@ -1,5 +1,20 @@
 [
   {
+    "title": "Stilt House",
+    "src": "stilt-house.jpg",
+    "instagram": ""
+  },
+  {
+    "title": "House Tree",
+    "src": "house-tree.jpg",
+    "instagram": ""
+  },
+  {
+    "title": "Dome House",
+    "src": "dome-house.jpg",
+    "instagram": ""
+  },
+  {
     "title": "Stick House",
     "src": "stick-house.JPG",
     "instagram": "https://www.instagram.com/p/DUEEMRzFGpc/"
@@ -9,8 +24,9 @@
     "src": "log-cabin.JPG",
     "instagram": "https://www.instagram.com/p/DOzqb2BDTTY/"
   },
-    {
+  {
     "title": "First Carving",
     "src": "house1.jpeg",
     "instagram": ""
-  }]
+  }
+]
