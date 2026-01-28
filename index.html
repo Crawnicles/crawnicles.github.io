@@ -554,10 +554,17 @@
       document.addEventListener('click',(e)=>{ if(!e.target.closest('.book')) document.querySelectorAll('.book.open').forEach(x=>x.classList.remove('open')); });
     }).catch(()=>document.getElementById('book-empty').style.display='block');
 
-    // Ask Andrew (Q&A)
+    // Get to Know Me (Q&A with optional photos)
     (function(){
       const mount=document.getElementById('qa-list'); const empty=document.getElementById('qa-empty');
-      function render(items){ items.forEach(q=>{ const d=document.createElement('details'); d.innerHTML=`<summary>${q.q}</summary><p class="muted">${q.a}</p>`; mount.appendChild(d); }); }
+      function render(items){
+        items.forEach(q=>{
+          const d=document.createElement('details');
+          const photos = q.photos && q.photos.length ? `<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem">${q.photos.map(p=>`<img src="trips/${p}" alt="Trip photo" style="height:120px;border-radius:8px;cursor:pointer;object-fit:cover" onclick="event.stopPropagation();openLightbox('trips/${p}')">`).join('')}</div>` : '';
+          d.innerHTML=`<summary>${q.q}</summary><p class="muted">${q.a}</p>${photos}`;
+          mount.appendChild(d);
+        });
+      }
       fetch('qa/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{ if(Array.isArray(items) && items.length){ render(items); } else { throw new Error(); } })
       .catch(()=>{ render([
         {q:'Why Vipassana?', a:'Ten days of silence taught me that most of my suffering was self-created. Now I sit every morning. It\'s the closest thing I have to a superpower.'},
@@ -565,8 +572,9 @@
         {q:'I learned to carve from...', a:'My mom. She\'s a master woodcarver who\'s sold thousands of pieces over the years. I grew up watching her turn blocks of wood into something alive.'},
         {q:'A perfect Saturday', a:'Morning meditation, a long hike with Tracy and the dogs, then dinner with the homies where someone says something that makes everyone lose it.'},
         {q:'Book I\'ve gifted most', a:'Poor Charlie\'s Almanack. The chapter on human misjudgment changed how I see decisions. "Invert, always invert."'},
-        {q:'Unpopular opinion', a:'Most people would be happier with less internet and more silence. I spend under 30 minutes a month on social media and I\'m not going back.'},
-        {q:'Best trip I\'ve taken', a:'Isle Royale. Remote, no cell service, wolves and moose. The kind of place that makes you feel small in the best way.'},
+        {q:'Unpopular opinion', a:'I don\'t bowl, don\'t do escape rooms, don\'t watch movies or shows sober, and I\'m not interested in regular season sports. Life\'s too short for forced fun.'},
+        {q:'Contrarian take', a:'The best career advice is to ignore most career advice. Follow curiosity, not five-year plans. The interesting people I know all got where they are by accident.'},
+        {q:'Best trips I\'ve taken', a:'Isle Royale — remote, no cell service, wolves and moose. Hawaii — surfing, helicopters, hiking in the rain. New Orleans road trip with the boys. The kind of trips that make you feel alive.', photos:[]},
         {q:'I\'m happiest when...', a:'I\'m building something with my hands, whether it\'s code, wood, or a deck at a wilderness center. The overlap of mental and physical work is where I come alive.'}
       ]); empty.style.display='none'; });
     })();
