@@ -1,17 +1,17 @@
 [
   {
     "title": "Steger Deck Floor",
-    "src": "steger-deck-flooring.jpg",
+    "src": "steger-deck-flooring.jpeg",
     "description": "Built this deck floor at the Steger Wilderness Center.",
     "skills": ["Decking"],
     "gallery": []
   },
   {
     "title": "Sauna Platform",
-    "src": "sauna-platform-finished.jpg",
+    "src": "sauna-platform-finished.jpeg",
     "description": "A platform to hold a sauna.",
     "skills": ["Framing"],
-    "gallery": ["sauna-platform-midpoint.jpg"]
+    "gallery": ["sauna-platform-midpoint.jpeg"]
   },
   {
     "title": "Coffee Table",
