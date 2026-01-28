@@ -1,5 +1,16 @@
 [
     {
+      "role": "Deck Carpenter",
+      "org": "Self-employed",
+      "location": "Minneapolis, MN",
+      "dates": "2025–Present",
+      "bullets": [
+        "Building decks and outdoor structures.",
+        "Framing, decking, and finish carpentry."
+      ],
+      "tech": ["Framing", "Decking", "Hand tools", "Power tools"]
+    },
+    {
       "role": "Tennis in Your Park Instructor",
       "org": "City Parks & Rec",
       "location": "Minneapolis, MN",
