@@ -173,11 +173,6 @@
         radial-gradient(1.4px 1.4px at 30% 68%, rgba(255,225,170,.16), transparent 60%); }
     .rule{position:relative} .rule::after{content:""; position:absolute; left:0; right:0; top:-1px; height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.08) 15%, rgba(255,255,255,.22) 50%, rgba(255,255,255,.08) 85%, transparent); filter:blur(.2px)}
 
-    /* NOW widget */
-    #now .now-grid{display:grid; gap:1rem; grid-template-columns:repeat(3, minmax(0,1fr))}
-    #now .now-card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:1rem; box-shadow:var(--shadow)}
-    #now .label{font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-3)}
-
     /* Writings search */
     .writings-controls{display:flex; gap:.8rem; flex-wrap:wrap; align-items:center; margin-bottom:1rem}
     .writings-controls input[type="search"]{flex:1; min-width:200px; padding:.6rem .9rem; border-radius:10px; border:1px solid var(--ring); background:var(--card); color:var(--ink); font-size:.95rem}
@@ -244,6 +239,7 @@
           <a class="pill" href="#listen">Playlists</a>
           <a class="pill" href="#video">Video</a>
           <a class="pill" href="#contact">Contact</a>
+          <a class="pill" href="./resume.pdf" download>Resume</a>
           <button class="pill" id="focus-toggle" aria-label="Toggle focus audio">♫</button>
           <button class="pill" id="theme-toggle" aria-label="Toggle theme">○/●</button>
         </div>
@@ -255,25 +251,10 @@
     <div class="scene"></div>
     <div class="wrap">
       <p class="muted" style="font-size:clamp(1.06rem,1.8vw,1.24rem)">I build things with code and wood. Summer means tennis, biking, and the north woods—a good year is more time outdoors than indoors. Winter is for writing, reading, carving, and travel. Proud to call Minneapolis home.</p>
-      <div class="cta">
-        <a class="btn alt" href="#contact">Work with me</a>
-        <a class="btn ghost" href="#projects">See projects</a>
-        <a class="btn ghost" href="./resume.pdf" download>Download résumé</a>
-      </div>
     </div>
   </section>
 
   <main class="wrap" style="padding:1.4rem 1rem 4rem">
-    <section id="now" class="reveal">
-      <div class="now-grid">
-        <div class="now-card"><div class="label">Reading</div><div id="now-reading">Loading…</div></div>
-        <div class="now-card"><div class="label">Learning</div><div id="now-learning">Loading…</div></div>
-        <div class="now-card"><div class="label">Building</div><div id="now-building">Loading…</div></div>
-      </div>
-    </section>
-
-    <div class="rule"></div>
-
     <section id="projects" class="reveal">
       <h2>Selected Projects</h2>
       <div class="grid g-3" style="margin-top:1rem">
@@ -435,13 +416,6 @@
     // Reveal on scroll
     const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }); }, {threshold:.1});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-    // NOW widget (falls back if JSON missing)
-    (function(){
-      const set = (d)=>{ document.getElementById('now-reading').textContent=d.reading; document.getElementById('now-learning').textContent=d.learning; document.getElementById('now-building').textContent=d.building; };
-      fetch('now/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(d=>{ if(d && (d.reading||d.learning||d.building)){ set({reading:d.reading||'—', learning:d.learning||'—', building:d.building||'—'}); } else { throw new Error(); } })
-      .catch(()=> set({ reading:'Designing Data-Intensive Applications', learning:'Azure Fabric + vector DB tradeoffs', building:'A tiny RAG assistant for my notes' }));
-    })();
 
     // Writings with search and date sorting
     (function(){
