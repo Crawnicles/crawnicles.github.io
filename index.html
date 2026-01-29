@@ -415,7 +415,7 @@
     const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }); }, {threshold:.1});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // Writings with search and date sorting
+    // Writings with full-text search and date sorting
     (function(){
       const wrap = document.getElementById('writing-list');
       const empty = document.getElementById('writing-empty');
@@ -439,7 +439,7 @@
 
         let filtered = allWritings.filter(w => {
           if(!query) return true;
-          const searchable = `${w.title} ${w.description||''} ${(w.tags||[]).join(' ')}`.toLowerCase();
+          const searchable = `${w.title} ${w.description||''} ${(w.tags||[]).join(' ')} ${w.content||''}`.toLowerCase();
           return searchable.includes(query);
         });
 
@@ -468,10 +468,18 @@
       searchInput?.addEventListener('input', renderWritings);
       sortSelect?.addEventListener('change', renderWritings);
 
-      fetch('writings/index.json').then(r=>r.json()).then(items=>{
+      fetch('writings/index.json').then(r=>r.json()).then(async items=>{
         if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
         allWritings = items;
         renderWritings();
+        // Fetch content of each article for full-text search
+        const contentPromises = items.map(async (w, i) => {
+          try {
+            const res = await fetch(`writings/${w.file}`);
+            if(res.ok) allWritings[i].content = await res.text();
+          } catch(e) {}
+        });
+        await Promise.all(contentPromises);
       }).catch(()=>{ empty.style.display='block'; });
     })();
 
