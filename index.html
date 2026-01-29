@@ -22,6 +22,10 @@
       --bg:#0b1220; --bg-soft:#0f1828; --ink:#ecf3ff; --muted:#9db3d1; --ring:#1f2a3f; --card:#0f1726ee;
       --accent:#7bd3ff; --accent-2:#4aa3ff; --accent-3:#7ce9d2; --accent-4:#8aa4ff; --chip:#0e1a30; --seal:#2e73ff;
     }
+    .theme-yoru{
+      --bg:#0a0812; --bg-soft:#12101a; --ink:#f0e6ff; --muted:#a89cc4; --ring:#2a2040; --card:#1a1428ee;
+      --accent:#e040fb; --accent-2:#7c4dff; --accent-3:#00e5ff; --accent-4:#ff4081; --chip:#1e1630; --seal:#9c27b0;
+    }
 
     html,body{height:100%}
     body{margin:0; font-family:"Noto Sans JP", Inter, system-ui; color:var(--ink); background:var(--bg); line-height:1.65;}
@@ -53,6 +57,12 @@
         radial-gradient(900px 260px at 20% -80px, rgba(0,180,216,.18), transparent 70%),
         url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'220\' height=\'140\'><path d=\'M0 70 Q55 40 110 70 T220 70 V140 H0Z\' fill=\'%230e1a30\' opacity=\'0.45\'/></svg>');
       background-repeat:repeat-x, repeat-x, repeat;
+    }
+    body.theme-yoru::before{content:""; position:fixed; inset:0; pointer-events:none; opacity:.32;
+      background:
+        radial-gradient(800px 300px at 80% -100px, rgba(224,64,251,.22), transparent 55%),
+        radial-gradient(600px 250px at 20% -60px, rgba(124,77,255,.18), transparent 60%),
+        radial-gradient(400px 200px at 50% 100%, rgba(0,229,255,.12), transparent 50%);
     }
 
     /* Header */
@@ -168,6 +178,13 @@
     #now .now-card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:1rem; box-shadow:var(--shadow)}
     #now .label{font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-3)}
 
+    /* Writings search */
+    .writings-controls{display:flex; gap:.8rem; flex-wrap:wrap; align-items:center; margin-bottom:1rem}
+    .writings-controls input[type="search"]{flex:1; min-width:200px; padding:.6rem .9rem; border-radius:10px; border:1px solid var(--ring); background:var(--card); color:var(--ink); font-size:.95rem}
+    .writings-controls input[type="search"]::placeholder{color:var(--muted)}
+    .writings-controls select{padding:.6rem .9rem; border-radius:10px; border:1px solid var(--ring); background:var(--card); color:var(--ink); font-size:.9rem; cursor:pointer}
+    .writing-date{font-size:.78rem; color:var(--muted); margin-top:.4rem}
+
     /* Ask Andrew */
     #ask details{border:1px solid var(--ring); background:var(--card); border-radius:12px; padding:.6rem .8rem}
     #ask details+details{margin-top:.6rem}
@@ -181,19 +198,23 @@
     .video-embed iframe{position:absolute; inset:0; width:100%; height:100%}
   </style>
 
-  <!-- Theme init (default dark / kuro, rotate on toggle) -->
+  <!-- Theme init (persists to localStorage, rotates on toggle) -->
   <script>
   (function(){
-    const THEMES=['theme-kuro','theme-sakura','theme-aomi'];
+    const THEMES=['theme-kuro','theme-sakura','theme-aomi','theme-yoru'];
+    const ICONS={'theme-kuro':'🖤','theme-sakura':'🌸','theme-aomi':'🌊','theme-yoru':'🔮'};
     function apply(name){
       const bodyEl = document.body; if(!bodyEl) return;
       THEMES.forEach(t=>bodyEl.classList.remove(t));
       bodyEl.classList.add(name);
+      localStorage.setItem('theme', name);
       const btn=document.getElementById('theme-toggle');
-      if(btn){ btn.textContent = name==='theme-kuro'?'🖤':name==='theme-sakura'?'🌸':'🌊'; }
+      if(btn){ btn.textContent = ICONS[name] || '○/●'; }
     }
     window.addEventListener('DOMContentLoaded',()=>{
-      apply('theme-kuro'); // default every visit
+      const saved = localStorage.getItem('theme');
+      const initial = THEMES.includes(saved) ? saved : 'theme-kuro';
+      apply(initial);
       const toggle=document.getElementById('theme-toggle');
       toggle?.addEventListener('click',()=>{
         const bodyEl=document.body;
@@ -262,7 +283,6 @@
           <div class="muted">Python · FastAPI · RAG/Embeddings · Postgres · Frontend</div>
           <div class="project-links">
             <a class="btn github" href="https://github.com/Crawnicles/Recommend_books" target="_blank" rel="noopener">View on GitHub</a>
-            <a class="btn demo" href="#" target="_blank" rel="noopener">Live Demo</a>
           </div>
         </article>
         <article class="card">
@@ -273,42 +293,30 @@
             <a class="btn github" href="https://github.com/Crawnicles/adtech_preview" target="_blank" rel="noopener">View on GitHub / Case</a>
           </div>
         </article>
-        <article class="card">
-          <h3>Financial Partnership Tool (MVP)</h3>
-          <p>Django app to aggregate investments and generate quarterly PDFs. Includes restaurant waste analytics. Private</p>
-          <div class="muted">Django · Celery · Postgres · Pandas</div>
-          <div class="project-links">
-            <a class="btn github" href="#" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </article>
-      </div>
+              </div>
     </section>
 
     <div class="rule"></div>
 
     <section id="experience" class="reveal">
       <h2>Experience</h2>
-      <p class="muted">Structured for quick scanning. Edit <span class="tag">/experience/index.json</span> to update roles, dates, bullets, and tech.</p>
       <div id="xp-list" class="grid g-2" style="margin-top:1rem"></div>
       <div id="xp-empty" class="muted" style="display:none">No experience found.</div>
     </section>
 
     <div class="rule"></div>
 
-    <section id="investments" class="reveal">
-      <h2>Investments & Analyses</h2>
-      <p class="muted">Public write-ups and dashboards. Add entries in <span class="tag">/investments/index.json</span>.</p>
-      <div id="invest-grid" class="grid g-3" style="margin-top:1rem"></div>
-      <div id="invest-empty" class="muted" style="display:none">No analyses yet.</div>
-    </section>
-
-    <div class="rule"></div>
-
     <section id="writings" class="reveal">
       <h2>Writings</h2>
-      <p class="muted">Drop Markdown files into <span class="tag">/writings</span> and list them in <span class="tag">/writings/index.json</span>. They’ll render in a reader view.</p>
-      <div id="writing-list" class="grid g-3" style="margin-top:1rem"></div>
-      <div id="writing-empty" class="muted" style="display:none">No writings found (check filenames & JSON).</div>
+      <div class="writings-controls">
+        <input type="search" id="writing-search" placeholder="Search writings..." aria-label="Search writings">
+        <select id="writing-sort" aria-label="Sort writings">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+      </div>
+      <div id="writing-list" class="grid g-3"></div>
+      <div id="writing-empty" class="muted" style="display:none">No writings found.</div>
     </section>
 
     <div class="rule"></div>
@@ -416,8 +424,8 @@
     </div>
   </footer>
 
-  <!-- Hidden SoundCloud widget for focus audio -->
-  <iframe id="sc-widget" style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/nicholasbien/2after&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
+  <!-- Hidden SoundCloud widget for focus audio (autoplay attempted on load) -->
+  <iframe id="sc-widget" style="display:none" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/nicholasbien/2after&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false"></iframe>
 
   <script>
     // Year & easter egg
@@ -435,18 +443,65 @@
       .catch(()=> set({ reading:'Designing Data-Intensive Applications', learning:'Azure Fabric + vector DB tradeoffs', building:'A tiny RAG assistant for my notes' }));
     })();
 
-    // Writings
-    fetch('writings/index.json').then(r=>r.json()).then(items=>{
-      const wrap = document.getElementById('writing-list'), empty = document.getElementById('writing-empty');
-      if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
-      items.forEach(w=>{
-        const el = document.createElement('article'); el.className='card';
-        el.innerHTML = `<h3><a href="post.html?src=writings/${w.file}" target="_blank" rel="noopener">${w.title}</a></h3>
-                        <p class="muted">${w.description||''}</p>
-                        <div>${(w.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
-        wrap.appendChild(el);
-      });
-    }).catch(()=>document.getElementById('writing-empty').style.display='block');
+    // Writings with search and date sorting
+    (function(){
+      const wrap = document.getElementById('writing-list');
+      const empty = document.getElementById('writing-empty');
+      const searchInput = document.getElementById('writing-search');
+      const sortSelect = document.getElementById('writing-sort');
+      let allWritings = [];
+
+      function parseDate(filename){
+        const match = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+        return match ? match[1] : '1970-01-01';
+      }
+
+      function formatDate(dateStr){
+        const d = new Date(dateStr + 'T00:00:00');
+        return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
+      }
+
+      function renderWritings(){
+        const query = searchInput.value.toLowerCase().trim();
+        const sortOrder = sortSelect.value;
+
+        let filtered = allWritings.filter(w => {
+          if(!query) return true;
+          const searchable = `${w.title} ${w.description||''} ${(w.tags||[]).join(' ')}`.toLowerCase();
+          return searchable.includes(query);
+        });
+
+        filtered.sort((a, b) => {
+          const dateA = parseDate(a.file);
+          const dateB = parseDate(b.file);
+          return sortOrder === 'newest' ? dateB.localeCompare(dateA) : dateA.localeCompare(dateB);
+        });
+
+        wrap.innerHTML = '';
+        if(!filtered.length){ empty.style.display = 'block'; return; }
+        empty.style.display = 'none';
+
+        filtered.forEach(w => {
+          const el = document.createElement('article'); el.className = 'card';
+          const dateStr = parseDate(w.file);
+          const formattedDate = formatDate(dateStr);
+          el.innerHTML = `<h3><a href="post.html?src=writings/${w.file}" target="_blank" rel="noopener">${w.title}</a></h3>
+                          <p class="muted">${w.description||''}</p>
+                          <div class="writing-date">${formattedDate}</div>
+                          <div>${(w.tags||[]).map(t=>`<span class='tag'>${t}</span>`).join('')}</div>`;
+          wrap.appendChild(el);
+        });
+      }
+
+      searchInput?.addEventListener('input', renderWritings);
+      sortSelect?.addEventListener('change', renderWritings);
+
+      fetch('writings/index.json').then(r=>r.json()).then(items=>{
+        if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
+        allWritings = items;
+        renderWritings();
+      }).catch(()=>{ empty.style.display='block'; });
+    })();
 
     // Carvings + lightbox
     const gallery = document.getElementById('carving-gallery');
@@ -642,31 +697,6 @@
       });
     })();
 
-    // Investments & Analyses
-    (function(){
-      const grid=document.getElementById('invest-grid'); const empty=document.getElementById('invest-empty');
-      function render(x){
-        const el=document.createElement('article'); el.className='card';
-        const chips=(x.metrics||[]).map(m=>`<span class='tag'>${m}</span>`).join('');
-        el.innerHTML = `
-          <h3>${x.title}</h3>
-          <p class="muted">${x.thesis||''}</p>
-          ${chips?`<div>${chips}</div>`:''}
-          ${x.link?`<p style="margin-top:.5rem"><a class='tag' href='${x.link}' target='_blank' rel='noopener'>Read more</a></p>`:''}
-        `;
-        grid.appendChild(el);
-      }
-      fetch('investments/index.json').then(r=> r.ok ? r.json() : Promise.reject()).then(items=>{
-        if(Array.isArray(items) && items.length){ items.forEach(render); } else { throw new Error(); }
-      }).catch(()=>{
-        const sample=[
-          {title:'Predicting parts wear to cut downtime', thesis:'Light ML + structured telemetry to schedule maintenance before failure.', metrics:['AUC .84','↓ downtime 12%'], link:'#'},
-          {title:'Menu mix & waste analytics', thesis:'Cohorts + contribution margin views to tune SKUs.', metrics:['↑ margin 4.2%'], link:'#'}
-        ];
-        sample.forEach(render); empty.style.display='none';
-      });
-    })();
-
     // Playlists & Sounds
     fetch('playlists/index.json').then(r=>r.json()).then(items=>{
       const grid = document.getElementById('listen-grid'), empty = document.getElementById('listen-empty');
@@ -687,7 +717,7 @@
       });
     }).catch(()=>document.getElementById('listen-empty').style.display='block');
 
-    // Focus audio via SoundCloud widget
+    // Focus audio via SoundCloud widget (attempts autoplay on load)
     (function(){
       const btn=document.getElementById('focus-toggle'); const iframe=document.getElementById('sc-widget');
       let widget=null, ready=false, playing=false, queued=false;
@@ -697,7 +727,13 @@
         try{
           widget = window.SC && SC.Widget(iframe);
           if(!widget){ update(); return; }
-          widget.bind(SC.Widget.Events.READY, ()=>{ ready=true; widget.setVolume(20); if(queued){ widget.play(); queued=false; } update(); });
+          widget.bind(SC.Widget.Events.READY, ()=>{
+            ready=true;
+            widget.setVolume(20);
+            // Check if autoplay worked (widget might already be playing)
+            widget.isPaused((paused)=>{ playing = !paused; update(); });
+            if(queued){ widget.play(); queued=false; }
+          });
           widget.bind(SC.Widget.Events.PLAY, ()=>{ playing=true; update(); });
           widget.bind(SC.Widget.Events.PAUSE, ()=>{ playing=false; update(); });
           update();
