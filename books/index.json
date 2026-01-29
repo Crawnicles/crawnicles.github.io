@@ -86,5 +86,165 @@
     "cover_image": "https://covers.openlibrary.org/b/isbn/0679775439-L.jpg",
     "insight": "Surreal and slow-burning. A man sits at the bottom of a well and the world unravels. Murakami teaches quiet persistence.",
     "quote": ""
+  },
+  {
+    "title": "The Essays of Warren Buffett",
+    "author": "Warren Buffett",
+    "cover": "#1a3a5c",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/1611637589-L.jpg",
+    "insight": "Buffett's shareholder letters distilled. Clear thinking about business, investing, and life. No jargon, just wisdom.",
+    "quote": "Price is what you pay. Value is what you get."
+  },
+  {
+    "title": "Ficciones",
+    "author": "Jorge Luis Borges",
+    "cover": "#2d3436",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0802130305-L.jpg",
+    "insight": "Stories that feel like dreams you can't shake. The Library of Babel still haunts me. Borges makes you question reality in 10 pages.",
+    "quote": "A man sets out to draw the world. Over time, he fills a space with images. Before dying, he discovers that the patient labyrinth of lines traces the image of his own face."
+  },
+  {
+    "title": "On the Road",
+    "author": "Jack Kerouac",
+    "cover": "#c0392b",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0140283293-L.jpg",
+    "insight": "The book that launched a thousand road trips. Messy, alive, and hungry. Best read young, before you know better.",
+    "quote": "The only people for me are the mad ones, the ones who are mad to live."
+  },
+  {
+    "title": "Awareness",
+    "author": "Anthony de Mello",
+    "cover": "#f39c12",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0385249373-L.jpg",
+    "insight": "A Jesuit priest who sounds like a Zen master. Cuts through spiritual nonsense with humor and clarity. Wake up, he says. Just wake up.",
+    "quote": "There is only one cause of unhappiness: the false beliefs you have in your head."
+  },
+  {
+    "title": "Siddhartha",
+    "author": "Hermann Hesse",
+    "cover": "#e67e22",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0553208845-L.jpg",
+    "insight": "A seeker's journey through every path—asceticism, pleasure, commerce—to find wisdom by the river. Simple and profound.",
+    "quote": "The river is everywhere at the same time. For it there is only the present, not the shadow of the past, nor the shadow of the future."
+  },
+  {
+    "title": "Shambhala: The Sacred Path of the Warrior",
+    "author": "Chogyam Trungpa",
+    "cover": "#8e44ad",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/1590304519-L.jpg",
+    "insight": "Warriorship as tenderness, not aggression. Basic goodness as the foundation. Trungpa's vision of enlightened society.",
+    "quote": "The key to warriorship is not being afraid of who you are."
+  },
+  {
+    "title": "Steve Jobs",
+    "author": "Walter Isaacson",
+    "cover": "#1a1a1a",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/1451648537-L.jpg",
+    "insight": "The full picture—genius and asshole, visionary and bully. Isaacson doesn't flinch. You finish it thinking about your own standards.",
+    "quote": "Stay hungry, stay foolish."
+  },
+  {
+    "title": "Einstein: His Life and Universe",
+    "author": "Walter Isaacson",
+    "cover": "#34495e",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0743264746-L.jpg",
+    "insight": "The rebel who reimagined space and time. Isaacson makes the physics accessible and the man human.",
+    "quote": "Imagination is more important than knowledge."
+  },
+  {
+    "title": "Benjamin Franklin: An American Life",
+    "author": "Walter Isaacson",
+    "cover": "#795548",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/074325807X-L.jpg",
+    "insight": "The original American self-improver. Inventor, diplomat, writer, scientist. Franklin invented being curious about everything.",
+    "quote": "An investment in knowledge pays the best interest."
+  },
+  {
+    "title": "Surely You're Joking, Mr. Feynman!",
+    "author": "Richard Feynman",
+    "cover": "#e74c3c",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0393316041-L.jpg",
+    "insight": "A Nobel physicist who picked locks, played bongos, and painted nudes. Curiosity as a way of life. Science as play.",
+    "quote": "The first principle is that you must not fool yourself—and you are the easiest person to fool."
+  },
+  {
+    "title": "The Way of Zen",
+    "author": "Alan Watts",
+    "cover": "#16a085",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0375705104-L.jpg",
+    "insight": "Watts bridges East and West without dumbing it down. Zen explained by someone who actually gets the joke.",
+    "quote": "Muddy water is best cleared by leaving it alone."
+  },
+  {
+    "title": "The Book: On the Taboo Against Knowing Who You Are",
+    "author": "Alan Watts",
+    "cover": "#1abc9c",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0679723005-L.jpg",
+    "insight": "The illusion of the separate self, explained like a friend telling you a secret. Changed how I see the boundaries between me and everything else.",
+    "quote": "You are an aperture through which the universe is looking at and exploring itself."
+  },
+  {
+    "title": "The Teachings of Don Juan",
+    "author": "Carlos Castaneda",
+    "cover": "#9b59b6",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0671600419-L.jpg",
+    "insight": "Real or fiction, it doesn't matter. A sorcerer's apprenticeship that cracks open perception. The desert as a teacher.",
+    "quote": "A man of knowledge lives by acting, not by thinking about acting."
+  },
+  {
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "author": "Douglas Adams",
+    "cover": "#3498db",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0345391802-L.jpg",
+    "insight": "The answer is 42. The question is funnier. Adams makes absurdism feel like the only sane response to the universe.",
+    "quote": "Don't Panic."
+  },
+  {
+    "title": "The Name of the Wind",
+    "author": "Patrick Rothfuss",
+    "cover": "#c0392b",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0756404746-L.jpg",
+    "insight": "A bard telling his own legend. The prose is beautiful, the magic system is clever, and the silence between the story is heavy.",
+    "quote": "Words are pale shadows of forgotten names. As names have power, words have power."
+  },
+  {
+    "title": "Zorba the Greek",
+    "author": "Nikos Kazantzakis",
+    "cover": "#d35400",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0684825546-L.jpg",
+    "insight": "A bookish man meets a force of nature. Zorba dances, drinks, loves, and lives without apology. A lesson in vitality.",
+    "quote": "Life is trouble. Only death is not."
+  },
+  {
+    "title": "A Path with Heart",
+    "author": "Jack Kornfield",
+    "cover": "#27ae60",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0553372114-L.jpg",
+    "insight": "Buddhism for Westerners, with all the psychological complexity included. Kornfield trained as a monk and as a therapist. It shows.",
+    "quote": "In the end, just three things matter: How well we have lived. How well we have loved. How well we have learned to let go."
+  },
+  {
+    "title": "Radical Acceptance",
+    "author": "Tara Brach",
+    "cover": "#2980b9",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0553380990-L.jpg",
+    "insight": "Stop fighting yourself. Brach blends Buddhist wisdom with real psychology. The RAIN technique alone is worth it.",
+    "quote": "Perhaps the biggest tragedy of our lives is that freedom is possible, yet we can pass our years trapped in the same old patterns."
+  },
+  {
+    "title": "Be Here Now",
+    "author": "Ram Dass",
+    "cover": "#8e44ad",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0517543052-L.jpg",
+    "insight": "Part memoir, part art book, part manual for awakening. Ram Dass went from Harvard to India and brought back something real.",
+    "quote": "The quieter you become, the more you can hear."
+  },
+  {
+    "title": "In the Shadow of Man",
+    "author": "Jane Goodall",
+    "cover": "#27ae60",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0618056769-L.jpg",
+    "insight": "Living with chimpanzees in Gombe. Goodall's patience and observation changed how we see ourselves and our closest relatives.",
+    "quote": "What you do makes a difference, and you have to decide what kind of difference you want to make."
   }
 ]

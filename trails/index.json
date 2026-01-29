@@ -25,5 +25,50 @@
     "type": "hiking",
     "coordinates": [34.68, 135.84],
     "notes": "Temples, deer, autumn colors."
+  },
+  {
+    "name": "Torres del Paine - W Trek",
+    "date": "2024-02-10",
+    "days": 5,
+    "miles": 50,
+    "type": "backpacking",
+    "coordinates": [-50.94, -73.10],
+    "notes": "Patagonian wind, glaciers, and granite towers. One of the world's great treks."
+  },
+  {
+    "name": "Zion - West Rim Trail",
+    "date": "2023-05-20",
+    "days": 2,
+    "miles": 16,
+    "type": "backpacking",
+    "coordinates": [37.30, -112.95],
+    "notes": "Top-down views of the canyon. Solitude above the crowds."
+  },
+  {
+    "name": "Zion - Angel's Landing",
+    "date": "2023-05-18",
+    "days": 1,
+    "miles": 5,
+    "type": "hiking",
+    "coordinates": [37.27, -112.95],
+    "notes": "Chains, exposure, and a view that earns every drop of sweat."
+  },
+  {
+    "name": "Glacier - Highline Trail",
+    "date": "2022-08-05",
+    "days": 1,
+    "miles": 12,
+    "type": "hiking",
+    "coordinates": [48.75, -113.75],
+    "notes": "Walking the continental divide. Mountain goats and wildflowers."
+  },
+  {
+    "name": "Glacier - Grinnell Glacier",
+    "date": "2022-08-06",
+    "days": 1,
+    "miles": 11,
+    "type": "hiking",
+    "coordinates": [48.76, -113.68],
+    "notes": "Watching a glacier disappear in real time. Worth the climb."
   }
 ]
