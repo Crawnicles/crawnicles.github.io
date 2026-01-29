@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Isle Royale - Feldtmann Loop",
+    "date": "2023-08-15",
+    "days": 4,
+    "miles": 28,
+    "type": "backpacking",
+    "coordinates": [47.94, -89.15],
+    "notes": "Remote, no cell service. Wolves and moose. The kind of trip that makes you feel alive."
+  },
+  {
+    "name": "BWCA - Boundary Waters",
+    "date": "2022-07-10",
+    "days": 5,
+    "miles": 35,
+    "type": "backpacking",
+    "coordinates": [48.05, -91.5],
+    "notes": "Paddling and portaging through the north woods."
+  },
+  {
+    "name": "Nara, Japan",
+    "date": "2024-11-20",
+    "days": 2,
+    "miles": 12,
+    "type": "hiking",
+    "coordinates": [34.68, 135.84],
+    "notes": "Temples, deer, autumn colors."
+  }
+]
