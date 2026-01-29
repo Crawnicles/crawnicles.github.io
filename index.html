@@ -579,7 +579,6 @@
       if(!Array.isArray(items) || !items.length){ empty.style.display='block'; return; }
       items.forEach(b=>{
         const el = document.createElement('div'); el.className='book';
-        const quote = b.quote ? `<div class="insight-quote">"${b.quote}"</div>` : '';
         const hasImage = b.cover_image ? 'has-image' : '';
         const bgStyle = b.cover_image ? `background-image:url('${b.cover_image}');background-color:${b.cover||'#2d1f15'}` : `background:${b.cover||'linear-gradient(145deg,#4a3728,#2d1f15)'}`;
         el.innerHTML = `
@@ -589,8 +588,7 @@
           </div>
           <div class="book-insight">
             <div class="insight-title">${b.title}</div>
-            <div class="insight-text">${b.insight||''}</div>
-            ${quote}
+            <div class="insight-quote">"${b.quote}"</div>
           </div>`;
         el.addEventListener('click',(e)=>{
           document.querySelectorAll('.book.open').forEach(x=>{ if(x!==el) x.classList.remove('open'); });
