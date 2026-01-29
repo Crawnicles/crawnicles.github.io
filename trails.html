@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Trails · Andrew Crawford</title>
-  <meta name="description" content="Hiking and backpacking adventures mapped.">
+  <title>Trails & Places · Andrew Crawford</title>
+  <meta name="description" content="Hiking, backpacking, and places of power mapped.">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <style>
-    :root{--bg:#0d0f12;--ink:#eef2f6;--muted:#a8b3bd;--accent:#ffd166;--card:#151a20e6;--ring:#2a2f36}
+    :root{--bg:#0d0f12;--ink:#eef2f6;--muted:#a8b3bd;--accent:#ffd166;--accent-power:#e040fb;--card:#151a20e6;--ring:#2a2f36}
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
 
@@ -21,8 +21,16 @@
 
     .stats{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:1000;display:flex;gap:1.5rem;padding:.8rem 1.4rem;background:var(--card);border:1px solid var(--ring);border-radius:12px;backdrop-filter:blur(8px)}
     .stat{text-align:center}
-    .stat-value{font-size:1.4rem;font-weight:700;color:var(--accent)}
+    .stat-value{font-size:1.4rem;font-weight:700}
+    .stat-value.trail{color:var(--accent)}
+    .stat-value.power{color:var(--accent-power)}
     .stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+    .legend{position:fixed;top:4rem;right:1rem;z-index:1000;display:flex;flex-direction:column;gap:.5rem;padding:.6rem .8rem;background:var(--card);border:1px solid var(--ring);border-radius:8px;font-size:.8rem}
+    .legend-item{display:flex;align-items:center;gap:.5rem}
+    .legend-dot{width:10px;height:10px;border-radius:50%}
+    .legend-dot.trail{background:var(--accent)}
+    .legend-dot.power{background:var(--accent-power)}
 
     .leaflet-popup-content-wrapper{background:var(--card);color:var(--ink);border:1px solid var(--ring);border-radius:10px}
     .leaflet-popup-tip{background:var(--card)}
@@ -30,35 +38,39 @@
     .leaflet-popup-content h3{margin:0 0 .3rem;font-size:1rem}
     .leaflet-popup-content p{margin:0;font-size:.85rem;color:var(--muted)}
     .leaflet-popup-content .meta{margin-top:.4rem;font-size:.75rem;color:var(--accent)}
+    .leaflet-popup-content .meta.power{color:var(--accent-power)}
   </style>
   <script data-goatcounter="https://crawnicles.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <div class="header">
     <a href="index.html">&larr; Back</a>
-    <span style="color:var(--muted)">Trails</span>
+    <span style="color:var(--muted)">Trails & Places</span>
   </div>
 
   <div id="map"></div>
 
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot trail"></div><span>Trails</span></div>
+    <div class="legend-item"><div class="legend-dot power"></div><span>Places of Power</span></div>
+  </div>
+
   <div class="stats">
-    <div class="stat"><div class="stat-value" id="stat-trips">0</div><div class="stat-label">Trips</div></div>
-    <div class="stat"><div class="stat-value" id="stat-miles">0</div><div class="stat-label">Miles</div></div>
-    <div class="stat"><div class="stat-value" id="stat-nights">0</div><div class="stat-label">Nights</div></div>
+    <div class="stat"><div class="stat-value trail" id="stat-trails">0</div><div class="stat-label">Trails</div></div>
+    <div class="stat"><div class="stat-value trail" id="stat-miles">0</div><div class="stat-label">Miles</div></div>
+    <div class="stat"><div class="stat-value power" id="stat-power">0</div><div class="stat-label">Places</div></div>
   </div>
 
   <script>
-    const map = L.map('map', {zoomControl: false}).setView([44.9, -93.2], 4);
+    const map = L.map('map', {zoomControl: false}).setView([30, 0], 2);
 
     L.control.zoom({position: 'bottomright'}).addTo(map);
 
-    // Dark map tiles
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap &copy; CARTO',
       maxZoom: 19
     }).addTo(map);
 
-    // Custom marker
     const trailIcon = L.divIcon({
       className: 'trail-marker',
       html: '<div style="width:14px;height:14px;background:#ffd166;border:2px solid #0d0f12;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
@@ -66,37 +78,49 @@
       iconAnchor: [7, 7]
     });
 
+    const powerIcon = L.divIcon({
+      className: 'power-marker',
+      html: '<div style="width:14px;height:14px;background:#e040fb;border:2px solid #0d0f12;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>',
+      iconSize: [14, 14],
+      iconAnchor: [7, 7]
+    });
+
     fetch('trails/index.json')
       .then(r => r.json())
-      .then(trips => {
-        let totalMiles = 0, totalNights = 0;
+      .then(places => {
+        let totalMiles = 0, trailCount = 0, powerCount = 0;
         const markers = [];
 
-        trips.forEach(t => {
-          totalMiles += t.miles || 0;
-          totalNights += (t.days || 1) - 1;
+        places.forEach(p => {
+          const isTrail = p.category === 'trail';
+          const icon = isTrail ? trailIcon : powerIcon;
 
-          const marker = L.marker(t.coordinates, {icon: trailIcon}).addTo(map);
-          const popup = `
-            <h3>${t.name}</h3>
-            <p>${t.notes || ''}</p>
-            <div class="meta">${t.days} days · ${t.miles} miles · ${t.date}</div>
-          `;
+          if (isTrail) {
+            totalMiles += p.miles || 0;
+            trailCount++;
+          } else {
+            powerCount++;
+          }
+
+          const marker = L.marker(p.coordinates, {icon}).addTo(map);
+          const meta = isTrail
+            ? `<div class="meta">${p.days} days · ${p.miles} miles</div>`
+            : `<div class="meta power">Place of Power</div>`;
+          const popup = `<h3>${p.name}</h3><p>${p.notes || ''}</p>${meta}`;
           marker.bindPopup(popup);
           markers.push(marker);
         });
 
-        document.getElementById('stat-trips').textContent = trips.length;
+        document.getElementById('stat-trails').textContent = trailCount;
         document.getElementById('stat-miles').textContent = totalMiles;
-        document.getElementById('stat-nights').textContent = totalNights;
+        document.getElementById('stat-power').textContent = powerCount;
 
-        // Fit map to markers if we have them
         if (markers.length > 1) {
           const group = L.featureGroup(markers);
           map.fitBounds(group.getBounds().pad(0.1));
         }
       })
-      .catch(() => console.log('No trails data found'));
+      .catch(() => console.log('No data found'));
   </script>
 </body>
 </html>

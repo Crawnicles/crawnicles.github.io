@@ -4,7 +4,7 @@
     "date": "2023-08-15",
     "days": 4,
     "miles": 28,
-    "type": "backpacking",
+    "category": "trail",
     "coordinates": [47.94, -89.15],
     "notes": "Remote, no cell service. Wolves and moose. The kind of trip that makes you feel alive."
   },
@@ -13,25 +13,16 @@
     "date": "2022-07-10",
     "days": 5,
     "miles": 35,
-    "type": "backpacking",
+    "category": "trail",
     "coordinates": [48.05, -91.5],
     "notes": "Paddling and portaging through the north woods."
-  },
-  {
-    "name": "Nara, Japan",
-    "date": "2024-11-20",
-    "days": 2,
-    "miles": 12,
-    "type": "hiking",
-    "coordinates": [34.68, 135.84],
-    "notes": "Temples, deer, autumn colors."
   },
   {
     "name": "Torres del Paine - W Trek",
     "date": "2024-02-10",
     "days": 5,
     "miles": 50,
-    "type": "backpacking",
+    "category": "trail",
     "coordinates": [-50.94, -73.10],
     "notes": "Patagonian wind, glaciers, and granite towers. One of the world's great treks."
   },
@@ -40,7 +31,7 @@
     "date": "2023-05-20",
     "days": 2,
     "miles": 16,
-    "type": "backpacking",
+    "category": "trail",
     "coordinates": [37.30, -112.95],
     "notes": "Top-down views of the canyon. Solitude above the crowds."
   },
@@ -49,7 +40,7 @@
     "date": "2023-05-18",
     "days": 1,
     "miles": 5,
-    "type": "hiking",
+    "category": "trail",
     "coordinates": [37.27, -112.95],
     "notes": "Chains, exposure, and a view that earns every drop of sweat."
   },
@@ -58,7 +49,7 @@
     "date": "2022-08-05",
     "days": 1,
     "miles": 12,
-    "type": "hiking",
+    "category": "trail",
     "coordinates": [48.75, -113.75],
     "notes": "Walking the continental divide. Mountain goats and wildflowers."
   },
@@ -67,8 +58,77 @@
     "date": "2022-08-06",
     "days": 1,
     "miles": 11,
-    "type": "hiking",
+    "category": "trail",
     "coordinates": [48.76, -113.68],
     "notes": "Watching a glacier disappear in real time. Worth the climb."
+  },
+  {
+    "name": "Gannett Peak",
+    "date": "2021-08-15",
+    "days": 3,
+    "miles": 25,
+    "category": "trail",
+    "coordinates": [43.18, -109.65],
+    "notes": "Wyoming's highest. Remote, glaciated, and earned."
+  },
+  {
+    "name": "Nikko, Japan",
+    "category": "power",
+    "coordinates": [36.75, 139.60],
+    "notes": "Temples in the mountains. Sacred cedar forests. Where shoguns rest."
+  },
+  {
+    "name": "Adirondacks",
+    "category": "power",
+    "coordinates": [44.11, -73.92],
+    "notes": "Old mountains, old forests. The original American wilderness."
+  },
+  {
+    "name": "Big Sur",
+    "category": "power",
+    "coordinates": [36.24, -121.80],
+    "notes": "Where the mountains meet the sea. Henry Miller knew."
+  },
+  {
+    "name": "Pai, Thailand",
+    "category": "power",
+    "coordinates": [19.36, 98.44],
+    "notes": "Mountain town in the north. Slow pace, good people, hot springs."
+  },
+  {
+    "name": "Bali",
+    "category": "power",
+    "coordinates": [-8.41, 115.19],
+    "notes": "Rice terraces, temples, and something in the air you can't name."
+  },
+  {
+    "name": "Leh, India",
+    "category": "power",
+    "coordinates": [34.16, 77.58],
+    "notes": "High desert at the edge of the Himalayas. Thin air, thick presence."
+  },
+  {
+    "name": "Cappadocia, Turkey",
+    "category": "power",
+    "coordinates": [38.64, 34.83],
+    "notes": "Fairy chimneys and underground cities. Landscape from another planet."
+  },
+  {
+    "name": "Barcelona",
+    "category": "power",
+    "coordinates": [41.39, 2.17],
+    "notes": "Gaudi's city. Art, food, and the Mediterranean light."
+  },
+  {
+    "name": "Volcanoes National Park",
+    "category": "power",
+    "coordinates": [19.41, -155.29],
+    "notes": "Pele's home. Where the earth is still being born."
+  },
+  {
+    "name": "Black Hills",
+    "category": "power",
+    "coordinates": [43.87, -103.46],
+    "notes": "Sacred to the Lakota. Paha Sapa. The heart of everything that is."
   }
 ]
