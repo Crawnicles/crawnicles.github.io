@@ -246,5 +246,21 @@
     "cover_image": "https://covers.openlibrary.org/b/isbn/0618056769-L.jpg",
     "insight": "Living with chimpanzees in Gombe. Goodall's patience and observation changed how we see ourselves and our closest relatives.",
     "quote": "What you do makes a difference, and you have to decide what kind of difference you want to make."
+  },
+  {
+    "title": "Zen Mind, Beginner's Mind",
+    "author": "Shunryu Suzuki",
+    "cover": "#2c3e50",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/1590308492-L.jpg",
+    "insight": "The book that introduced Zen to the West. Simple talks that get deeper every time you read them. Beginner's mind is the whole practice.",
+    "quote": "In the beginner's mind there are many possibilities, but in the expert's there are few."
+  },
+  {
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "cover": "#c2955a",
+    "cover_image": "https://covers.openlibrary.org/b/isbn/0441172717-L.jpg",
+    "insight": "Politics, ecology, religion, and power on a desert planet. Herbert built a world so complete you can taste the spice. Fear is the mind-killer.",
+    "quote": "I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration."
   }
 ]
