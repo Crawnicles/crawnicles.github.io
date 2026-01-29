@@ -180,6 +180,14 @@
     .writings-controls select{padding:.6rem .9rem; border-radius:10px; border:1px solid var(--ring); background:var(--card); color:var(--ink); font-size:.9rem; cursor:pointer}
     .writing-date{font-size:.78rem; color:var(--muted); margin-top:.4rem}
 
+    /* Contact form */
+    .contact-form{display:flex; flex-direction:column; gap:.8rem}
+    .contact-form input, .contact-form textarea{padding:.7rem .9rem; border-radius:10px; border:1px solid var(--ring); background:var(--bg-soft); color:var(--ink); font-size:.95rem; font-family:inherit}
+    .contact-form input::placeholder, .contact-form textarea::placeholder{color:var(--muted)}
+    .contact-form textarea{resize:vertical; min-height:100px}
+    .contact-form button{align-self:flex-start}
+    .contact-links a{color:var(--accent-2)}
+
     /* Ask Andrew */
     #ask details{border:1px solid var(--ring); background:var(--card); border-radius:12px; padding:.6rem .8rem}
     #ask details+details{margin-top:.6rem}
@@ -221,6 +229,8 @@
   })();
   </script>
   <script src="https://w.soundcloud.com/player/api.js" defer></script>
+  <!-- Analytics -->
+  <script data-goatcounter="https://crawnicles.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <header>
@@ -377,22 +387,23 @@
 
     <section id="contact" class="grid g-2 reveal" style="align-items:start">
       <div class="card">
-        <h2>Contact</h2>
-        <ul>
-          <li><strong>Email:</strong> <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a></li>
-          <li><strong>Location:</strong> Minneapolis, MN (CST)</li>
-          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/crawnicles/">linkedin.com/in/crawnicles/</a></li>
-          <li><strong>GitHub:</strong> <a href="http://github.com/crawnicles">github.com/crawnicles</a></li>
-        </ul>
-        <p>
-          <a id="schedule-mail" class="btn" href="#">Schedule by Email</a>
-          <a id="gcal-link" class="btn ghost" target="_blank" rel="noopener" href="#">Add to Google Calendar</a>
-          </p>
-        <p class="muted">Tip: The email + Google Calendar buttons are **free** and work anywhere. If you ever want automated booking later, we can add a free option like Google Appointment Schedules.</p>
+        <h2>Get in Touch</h2>
+        <form action="https://formspree.io/f/crawnicles@gmail.com" method="POST" class="contact-form">
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Message" rows="4" required></textarea>
+          <button type="submit" class="btn alt">Send Message</button>
+        </form>
+        <div class="contact-links" style="margin-top:1rem">
+          <a href="mailto:crawnicles@gmail.com">crawnicles@gmail.com</a> ·
+          <a href="https://www.linkedin.com/in/crawnicles/" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="http://github.com/crawnicles" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
       <div class="card">
         <h2>Now</h2>
         <p>Exploring ML + data roles where I can own pipelines and ship features. Building tools that reduce toil and help teams decide faster.</p>
+        <p class="muted" style="margin-top:.8rem">Minneapolis, MN · Open to remote or hybrid</p>
       </div>
     </section>
   </main>
